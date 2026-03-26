@@ -1,50 +1,77 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { ArrowBigRight } from "lucide-react"
+import { useState } from "react"
 
 interface HeroSectionProps {
-  title: string
-  description: string
-  buttonText: string
-  buttonUrl: string
+  title?: string
+  description?: string
+  buttonText?: string
+  buttonUrl?: string
   image: string
 }
 
 export default function HeroSection({ title, description, buttonText, buttonUrl, image }: HeroSectionProps) {
+  const [imageLoaded, setImageLoaded] = useState(false)
+
   return (
     <div
-      className="relative w-full h-[756px] flex items-center justify-center"
+      className="relative w-full flex items-center justify-center overflow-hidden"
       style={{
-        backgroundImage: "url('/55c4d981b39c3019f00330a0931ca7a12d746830.jpg')",
+        backgroundImage: "url('/project-images/55c4d981b39c3019f00330a0931ca7a12d746830.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
-      <main className="relative z-10 flex items-center justify-between w-[1389px] h-auto">
+      <main className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-[1389px] px-6 lg:px-0 py-16 lg:py-0 lg:h-[656px] gap-10">
 
-        <div className="flex items-start flex-col flex-1 gap-5">
-          <span className="text-[32px] text-brand-orange-6 font-bold">{title}</span>
+        {(title || description || (buttonText && buttonUrl)) && (
+          <div className="flex items-center lg:items-start flex-col w-full lg:w-[420px] gap-6">
+            {title && (
+              <span className="text-2xl lg:text-[32px] text-brand-orange-6 font-bold leading-tight text-center lg:text-left">
+                {title}
+              </span>
+            )}
 
-          <span className="text-white font-extralight">
-            {description}
-          </span>
+            {description && (
+              <span className="text-white font-light text-sm leading-[26px] text-center lg:text-left">
+                {description}
+              </span>
+            )}
 
-          <Button asChild className="w-[240px] h-[48px] rounded-full bg-amber-800 cursor-pointer">
-            <Link href={buttonUrl}>
-              {buttonText}
-              <ArrowBigRight />
-            </Link>
-          </Button>
-        </div>
+            {buttonText && buttonUrl && (
+              <Button asChild className="w-[240px] h-[48px] rounded-full cursor-pointer border-0" style={{
+                background: "linear-gradient(to right, #7B2FBE, #F5A623)"
+              }}>
+                <Link href={buttonUrl}>
+                  {buttonText}
+                  <ArrowBigRight />
+                </Link>
+              </Button>
+            )}
+          </div>
+        )}
 
-        <div className="relative flex-1 h-[500px]">
+        <div className="relative w-full lg:w-[700px] h-[300px] lg:h-[600px] shrink-0">
+          {!imageLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-10 h-10 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+            </div>
+          )}
+
           <Image
             src={image}
-            alt={title}
+            alt={title ?? "Hero image"}
             fill
-            className="object-contain"
+            priority
+            onLoad={() => setImageLoaded(true)}
+            className={`object-contain object-center transition-opacity duration-500 ${
+              imageLoaded ? "opacity-100" : "opacity-0"
+            }`}
           />
         </div>
 

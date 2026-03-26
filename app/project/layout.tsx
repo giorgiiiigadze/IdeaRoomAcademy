@@ -1,65 +1,122 @@
 "use client"
 
-import HeroSection from "@/components/projects-layout/Hero"
 import { usePathname } from "next/navigation"
+import HeroSection from "@/components/projects-layout/Hero"
+import ProjectNavigation from "@/components/projects-layout/ProjectNavigation"
 
 const heroConfig = {
   "video-editing": {
     title: "Video Editing",
-    description: "Your description here",
-    buttonText: "Read the Case Study",
-    buttonUrl: "/project/video-editing",
-    image: "/video-editing.jpg",
-  },
-  "branding": {
-    title: "Branding",
-    description: "Your description here",
-    buttonText: "Read the Case Study",
-    buttonUrl: "/project/branding",
-    image: "/branding.jpg",
-  },
-  "motion-design": {
-    title: "Motin Design",
     description: `
+
       We build meaningful long-term partnerships and deliver
       the best experience of digital services across the worlde build meaningful long-term services across the worlde build meaningful
 
       We build meaningful long-term partnerships and deliver
-      the best experience of digital services across the worlde build meaningful long-term services across the worlde build meaningful`,
+      the best experience of digital services across the worlde build meaningful long-term services across the worlde build meaningful
+    
+    `,
+    buttonText: "Read the Case Study",
+    buttonUrl: "/project/video-editing",
+    image: "/project-images/video-editing.png",
+  },
+  "branding": {
+    title: "Branding",
+    description: `
 
+      We build meaningful long-term partnerships and deliver
+      the best experience of digital services across the worlde build meaningful long-term services across the worlde build meaningful
+
+      We build meaningful long-term partnerships and deliver
+      the best experience of digital services across the worlde build meaningful long-term services across the worlde build meaningful
+    
+    `,
+    buttonText: "Read the Case Study",
+    buttonUrl: "/project/branding",
+    image: "/project-images/branding.png",
+  },
+  "motion-design": {
+    title: "Motion Design",
+    description: `
+
+      We build meaningful long-term partnerships and deliver
+      the best experience of digital services across the worlde build meaningful long-term services across the worlde build meaningful
+
+      We build meaningful long-term partnerships and deliver
+      the best experience of digital services across the worlde build meaningful long-term services across the worlde build meaningful
+    
+    `,
     buttonText: "Read the Case Study",
     buttonUrl: "/project/motion-design",
-    image: "/motion-design.jpg",
+    image: "/project-images/motion-design.png",
   },
   "social-media": {
     title: "Social Media",
-    description: "Your description here",
+    description: `
+
+      We build meaningful long-term partnerships and deliver
+      the best experience of digital services across the worlde build meaningful long-term services across the worlde build meaningful
+
+      We build meaningful long-term partnerships and deliver
+      the best experience of digital services across the worlde build meaningful long-term services across the worlde build meaningful
+    
+    `,
     buttonText: "Read the Case Study",
     buttonUrl: "/project/social-media",
-    image: "/social-media.jpg",
+    image: "/project-images/social-media.png",
   },
   "web-development": {
     title: "Web Development",
-    description: "Your description here",
+    description: `
+
+      We build meaningful long-term partnerships and deliver
+      the best experience of digital services across the worlde build meaningful long-term services across the worlde build meaningful
+
+      We build meaningful long-term partnerships and deliver
+      the best experience of digital services across the worlde build meaningful long-term services across the worlde build meaningful
+    
+    `,
     buttonText: "Read the Case Study",
     buttonUrl: "/project/web-development",
-    image: "/web-development.jpg",
+    image: "/project-images/web-development.png",
   },
 }
 
-export default function ProjectLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+function ProjectLayoutClient({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const slug = pathname.split("/").filter(Boolean).pop() ?? ""
   const hero = heroConfig[slug as keyof typeof heroConfig]
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-between gap-8">
       {hero && <HeroSection {...hero} />}
+
+      <div className="w-full flex flex-col items-center justify-center gap-2 text-center">
+        <span
+          className="text-sm font-bold uppercase tracking-widest"
+          style={{
+            backgroundImage: "linear-gradient(to right, #7B2FBE, #F5A623)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          Our Portfolio
+        </span>
+
+        <span className="text-[36px] font-bold leading-tight">Recent Project</span>
+
+        <span className="text-[16px] text-muted-foreground text-[#535353]">
+          Here&apos;s a selection of our recent projects across the digital landscape.
+        </span>
+      </div>
+
+      <ProjectNavigation />
       {children}
     </div>
   )
+}
+
+export default function ProjectLayout({ children }: { children: React.ReactNode }) {
+  return <ProjectLayoutClient>{children}</ProjectLayoutClient>
 }

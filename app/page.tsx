@@ -1,10 +1,27 @@
 import Image from "next/image";
-
 import ClientResponse from "@/components/clientResponse/client-response";
 
 export default async function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center font-sans">
+
+      <section className="relative w-full h-screen">
+        <Image
+          src="/project-images/55c4d981b39c3019f00330a0931ca7a12d746830.jpg"
+          alt="Hero"
+          fill
+          priority
+          className="object-fill"
+        />
+        <Image
+          src="/landing-page-images/landing-page-image.png"
+          alt="Hero"
+          fill
+          priority
+          className="object-fill"
+        />
+      </section>
+      
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 sm:items-start">
         <Image
           className="dark:invert"
@@ -14,10 +31,10 @@ export default async function Home() {
           height={20}
           priority
         />
+
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             To get started, edit the page.tsx file.
-
             This is the next js idea room project
           </h1>
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
@@ -63,9 +80,9 @@ export default async function Home() {
             Documentation
           </a>
         </div>
-
       </main>
-        <ClientResponse />
+
+      <ClientResponse />
     </div>
   );
 }
