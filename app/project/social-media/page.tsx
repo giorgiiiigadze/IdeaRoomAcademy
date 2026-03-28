@@ -5,7 +5,6 @@ export default function SocialMediaPage(){
         <div>
 
             <ProjectPageInfromation category="social-media" />
-            Social media page
         </div>
     )
 }

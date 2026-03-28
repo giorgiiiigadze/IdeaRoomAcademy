@@ -1,88 +1,94 @@
 import Image from "next/image";
+
+import HeroSection from "@/components/layout/landingPageHero";
 import ClientResponse from "@/components/clientResponse/client-response";
+import BlogDisplay from "@/components/blogDisplay/blogDisplay";
+import Link from "next/link";
+
+const brands = [
+  { name: "Brand 1", logo: "/next.svg" },
+  { name: "Brand 2", logo: "/next.svg" },
+  { name: "Brand 3", logo: "/next.svg" },
+  { name: "Brand 4", logo: "/next.svg" },
+  { name: "Brand 5", logo: "/next.svg" },
+  { name: "Brand 6", logo: "/next.svg" },
+]
+
+const servicesLinks = [
+  { label: "Video Editing", href: "/project/video-editing", description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress, Shopify & HubSpot. Whether you’re a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website."},
+  { label: "Branding", href: "/project/branding", description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress, Shopify & HubSpot. Whether you’re a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website."},
+  { label: "Social Media", href: "/project/social-media", description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress, Shopify & HubSpot. Whether you’re a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website."},
+  { label: "Web Development", href: "/project/web-development", description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress, Shopify & HubSpot. Whether you’re a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website."},
+  { label: "UI/UX Design", href: "#", description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress, Shopify & HubSpot. Whether you’re a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website."},
+  { label: "Motion Design", href: "/project/motion-design", description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress, Shopify & HubSpot. Whether you’re a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website."},
+]
 
 export default async function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center font-sans">
 
-      <section className="relative w-full h-screen">
-        <Image
-          src="/project-images/55c4d981b39c3019f00330a0931ca7a12d746830.jpg"
-          alt="Hero"
-          fill
-          priority
-          className="object-fill"
-        />
-        <Image
-          src="/landing-page-images/landing-page-image.png"
-          alt="Hero"
-          fill
-          priority
-          className="object-fill"
-        />
-      </section>
-      
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
+      <main className="w-full flex items-center justify-around flex-col gap-6">
 
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-            This is the next js idea room project
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <section className="relative w-full h-screen flex flex-col items-center justify-center gap-4 overflow-hidden" style={{
+          background: "linear-gradient(to right, #7B2FBE, #F5A623)"
+        }}>
+
+          <HeroSection />
+
+        </section>
+        
+        <div className="w-full max-w-[1389px] flex flex-col items-center gap-8 py-10 px-4">
+
+          <span className="text-sm font-bold uppercase tracking-widest text-brand-purple-5 text-center">
+            Trusted by current and soon to be world-class brands
+          </span>
+
+          <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {brands.map((brand) => (
+              <div
+                key={brand.name}
+                className="flex items-center justify-center px-4 py-4 border border-border bg-background"
+              >
+                <Image
+                  src={brand.logo}
+                  alt={brand.name}
+                  width={100}
+                  height={40}
+                  className="object-contain"
+                />
+              </div>
+            ))}
+          </div>
+
+          <span className="text-2xl font-bold uppercase tracking-widest text-brand-purple-5 text-center">
+            Our services
+          </span>
+
+          <div className="flex items-center flex-wrap max-w-[1389px] gap-2">
+            {servicesLinks.map((service) => (
+              <div key={service.label} className="w-[440px] h-[378px] rounded-2xl p-4 flex flex-col items-start justify-between">
+
+                <span className="text-2xl font-bold">
+                  {service.label}
+                </span>
+
+                <span>
+                  {service.description}
+                </span>
+
+                <Link href={service.href} className="bg-brand-orange-4 rounded-[8px] p-2 px-4 text-white flex">Learn More</Link>
+              </div>
+            ))}
+          </div>
+
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+
+        <ClientResponse />
+
+        <BlogDisplay showViewAll count={3} mainText="Blog" secondaryText="Get intresting stories about people, projects and career oportunities directly to your mailbox"/>
       </main>
 
-      <ClientResponse />
     </div>
   );
 }

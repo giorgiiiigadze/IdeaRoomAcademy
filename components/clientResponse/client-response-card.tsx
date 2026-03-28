@@ -9,7 +9,7 @@ type ClientResponseCardProps = {
 
 export default function ClientResponseCard({ text, name, title, image }: ClientResponseCardProps) {
   return (
-    <div className="w-[452px] h-[240px] bg-white rounded-[14px] shadow-md flex flex-col items-start justify-center p-10 gap-4">
+    <div className="flex-1 h-[240px] bg-white rounded-[14px] shadow-md flex flex-col items-start justify-center p-10 gap-4">
 
       <span className="text-[#7B7D7E]">
         {text}

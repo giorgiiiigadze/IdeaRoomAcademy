@@ -4,8 +4,6 @@ export default function BrandingPage(){
     return (
         <div>
             <ProjectPageInfromation category="branding" />
-
-            Branding
         </div>
     )
 }

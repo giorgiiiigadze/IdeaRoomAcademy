@@ -13,21 +13,21 @@ export function GET() {
       text: "We're most impressed with BurstDigital's flexibility and willingness to go the extra mile to cater to our needs to go the extra mile to cater to our needs most impressed with the extra mile to cater",
       name: "Giorgi Giorgadze",
       title: "The Queen of Tennis",
-      image: "/avatars/maria.jpg",
+      image: "/globe.svg",
     },
     {
       id: 2,
       text: "We're most impressed with BurstDigital's flexibility and willingness to go the extra mile to cater to our needs to go the extra mile to cater to our needs most impressed with the extra mile to cater",
       name: "Datuna",
       title: "The Queen of Tennis",
-      image: "/avatars/maria.jpg",
+      image: "/globe.svg",
     },
     {
       id: 3,
       text: "We're most impressed with BurstDigital's flexibility and willingness to go the extra mile to cater to our needs to go the extra mile to cater to our needs most impressed with the extra mile to cater",
       name: "Maria Sharapova",
       title: "The Queen of Tennis",
-      image: "/avatars/maria.jpg",
+      image: "/globe.svg",
     },
   ]
 
