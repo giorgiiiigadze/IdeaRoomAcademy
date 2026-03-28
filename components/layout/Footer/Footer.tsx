@@ -1,6 +1,6 @@
 import Image from "next/image"
 import FooterColumn from "./FooterColumn"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { ThemeToggle } from "@/components/themeToggle"
 import { FaFacebook, FaYoutube, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa"
 import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md"
 

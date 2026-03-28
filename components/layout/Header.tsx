@@ -4,7 +4,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
 import { Button } from "../ui/button"
-import { ThemeToggle } from "../theme-toggle"
 
 import {
   NavigationMenu,
@@ -87,7 +86,7 @@ function AcademyButton() {
       ref={btnRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative overflow-hidden cursor-pointer p-2.5 px-6 rounded-full bg-brand-orange-5 text-[#7B2FBE] font-bold"
+      className="relative overflow-hidden cursor-pointer p-2.5 px-6 rounded-full bg-brand-orange-5 text-brand-purple-5 font-bold"
     >
       <span ref={defaultTextRef} className="block">Academy</span>
       <span ref={hoverTextRef} className="absolute inset-0 flex items-center justify-center opacity-0">Academy</span>
@@ -107,8 +106,8 @@ export default function Header() {
   }, [])
 
   return (
-    <header className={`w-full fixed top-0 left-0 right-0 z-50 h-[54px] bg-white lg:bg-transparent ${mobileOpen ? "bg-white" : ""}`}>
-      <div className="w-full max-w-[1389px] mx-auto px-4 lg:px-0 flex items-center justify-between h-[54px] lg:mt-2">
+    <header className={`w-full absolute top-0 left-0 right-0 z-50 h-[54px] lg:bg-transparent sm:px-6 lg:px-8 `}>
+      <div className={`w-full max-w-[1389px] mx-auto p-4 flex items-center justify-between mt-2 border border-brand-purple-3/30 bg-brand-purple-5/10 backdrop-blur-md rounded-2xl ${mobileOpen ? "bg-white" : ""}`}>
         <Link href={"/"}>
           <Image src="/logo.svg" alt="Idearoom logo" width={100} height={54} priority />
         </Link>
@@ -194,10 +193,6 @@ export default function Header() {
 
             </NavigationMenuList>
           </NavigationMenu>
-
-          <div className="w-px h-5 bg-border mx-2" />
-
-          <ThemeToggle />
 
           <div className="w-px h-5 bg-border mx-2" />
 

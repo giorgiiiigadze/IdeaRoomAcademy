@@ -19,10 +19,13 @@ export default async function BlogSlugPage({ params }: { params: { blogSlug: str
 
         <HeroSection
           title={blog.title}
+          description={blog.description}
           image={blog.image}
+          badge="Blog Article"
+          showReadFull 
         />
 
-        <div className="w-full max-w-[1389px] px-4 py-10 flex flex-col gap-6">
+        <div className="w-full max-w-[1389px] px-4 py-10 flex flex-col gap-6" id="full-blog">
 
           <h2 className="text-xl sm:text-2xl font-bold">
             {blog.title}

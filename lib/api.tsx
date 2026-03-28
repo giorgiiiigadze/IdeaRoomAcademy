@@ -30,7 +30,7 @@ export async function getProjectInformation(category: string, baseUrl = process.
 
 export async function getBlogs(baseUrl = process.env.NEXT_PUBLIC_APP_URL) {
   const res = await fetch(`${baseUrl}/api/blog-information`, {
-    cache: "no-store"
+    next: { revalidate: 3600 }
   })
   return res.json()
 }

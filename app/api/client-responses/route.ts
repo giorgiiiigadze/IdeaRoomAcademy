@@ -29,6 +29,13 @@ export function GET() {
       title: "The Queen of Tennis",
       image: "/globe.svg",
     },
+    {
+      id: 4,
+      text: "We're most impressed with BurstDigital's flexibility and willingness to go the extra mile to cater to our needs to go the extra mile to cater to our needs most impressed with the extra mile to cater",
+      name: "Maria Sharapova",
+      title: "The Queen of Tennis",
+      image: "/globe.svg",
+    },
   ]
 
   return Response.json(testimonials)

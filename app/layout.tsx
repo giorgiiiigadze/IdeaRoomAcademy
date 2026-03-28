@@ -5,7 +5,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer/Footer";
 
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/themeProvider";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
@@ -35,7 +35,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-full flex flex-col">
         <ThemeProvider 
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
+          forcedTheme="light"
           enableSystem
           disableTransitionOnChange
         >

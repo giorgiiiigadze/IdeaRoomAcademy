@@ -1,4 +1,3 @@
-import Link from "next/link"
 import BlogCard from "./blogCard"
 import { getBlogs } from "@/lib/api"
 
@@ -18,7 +17,7 @@ interface BlogDisplayProps {
   secondaryText?: string
 }
 
-export default async function BlogDisplay({ count, showViewAll = true, mainText, secondaryText }: BlogDisplayProps) {
+export default async function BlogDisplay({ count, mainText, secondaryText }: BlogDisplayProps) {
   const blogs: Blog[] = await getBlogs()
 
   const featuredBlogs = count ? blogs.slice(0, count) : blogs
@@ -50,15 +49,6 @@ export default async function BlogDisplay({ count, showViewAll = true, mainText,
           />
         ))}
       </div>
-
-      {showViewAll && (
-        <Link
-          href="/blogs"
-          className="relative overflow-hidden cursor-pointer py-2.5 px-6 rounded-full bg-brand-orange-5 text-[#7B2FBE] font-bold text-sm sm:text-base transition-opacity hover:opacity-90 active:opacity-75"
-        >
-          View all
-        </Link>
-      )}
 
     </div>
   )

@@ -19,6 +19,7 @@ const heroConfig = {
     buttonText: "Read the Case Study",
     buttonUrl: "/project/video-editing",
     image: "/project-images/video-editing.png",
+    badge: "Project"
   },
   "branding": {
     title: "Branding",
@@ -34,6 +35,7 @@ const heroConfig = {
     buttonText: "Read the Case Study",
     buttonUrl: "/project/branding",
     image: "/project-images/branding.png",
+    badge: "Project"
   },
   "motion-design": {
     title: "Motion Design",
@@ -49,6 +51,7 @@ const heroConfig = {
     buttonText: "Read the Case Study",
     buttonUrl: "/project/motion-design",
     image: "/project-images/motion-design.png",
+    badge: "Project"
   },
   "social-media": {
     title: "Social Media",
@@ -64,6 +67,7 @@ const heroConfig = {
     buttonText: "Read the Case Study",
     buttonUrl: "/project/social-media",
     image: "/project-images/social-media.png",
+    badge: "Project"
   },
   "web-development": {
     title: "Web Development",
@@ -79,6 +83,7 @@ const heroConfig = {
     buttonText: "Read the Case Study",
     buttonUrl: "/project/web-development",
     image: "/project-images/web-development.png",
+    badge: "Project"
   },
 }
 
