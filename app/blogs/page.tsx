@@ -1,7 +1,7 @@
 import BlogCard from "@/components/blogDisplay/blogCard"
 import { getBlogs } from "@/lib/api"
 
-import HeroSection from "@/components/projects-layout/Hero"
+import HeroSection from "@/components/projectLayout/Hero"
 
 interface Blog {
   id: number
@@ -20,7 +20,7 @@ export default async function BlogsPage(){
 
             <HeroSection />
 
-            <div className="w-full max-w-[1389px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="w-full max-w-[1389px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
                 {blogs.map((blog) => (
                     <BlogCard
                         key={blog.id}

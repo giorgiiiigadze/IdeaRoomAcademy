@@ -1,7 +1,7 @@
 import { getBlogs } from "@/lib/api"
 import { notFound } from "next/navigation"
 
-import HeroSection from "@/components/projects-layout/Hero"
+import HeroSection from "@/components/projectLayout/Hero"
 import BlogDisplay from "@/components/blogDisplay/blogDisplay"
 
 export default async function BlogSlugPage({ params }: { params: { blogSlug: string } }) {

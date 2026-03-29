@@ -32,7 +32,7 @@ export default function Cursor({ containerRef }: { containerRef: React.RefObject
 
   return (
     <div
-      className="fixed top-0 left-0 pointer-events-none z-50 w-3 h-3 bg-[#222] rounded-full flex items-center justify-center"
+      className="fixed top-0 left-5 pointer-events-none z-50 w-3 h-3 bg-[#222] rounded-full flex items-center justify-center"
       style={{
         transform: `translate(${position.x - 20}px, ${position.y - 20}px)`,
         opacity: isVisible ? 1 : 0,

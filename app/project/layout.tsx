@@ -1,8 +1,8 @@
 "use client"
 
 import { usePathname } from "next/navigation"
-import HeroSection from "@/components/projects-layout/Hero"
-import ProjectNavigation from "@/components/projects-layout/ProjectNavigation"
+import HeroSection from "@/components/projectLayout/Hero"
+import ProjectNavigation from "@/components/projectLayout/ProjectNavigation"
 
 const heroConfig = {
   "video-editing": {

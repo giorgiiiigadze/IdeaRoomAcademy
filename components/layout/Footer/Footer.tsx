@@ -1,6 +1,5 @@
 import Image from "next/image"
 import FooterColumn from "./FooterColumn"
-import { ThemeToggle } from "@/components/themeToggle"
 import { FaFacebook, FaYoutube, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa"
 import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md"
 
@@ -92,7 +91,6 @@ export default function Footer() {
 
       <div className="w-full max-w-[1392px] px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-center gap-2.5 text-[#CACACA] text-sm text-center">
         <span>© 2026 Copyright Idearoom. All rights reserved.</span>
-        <ThemeToggle />
       </div>
 
     </footer>

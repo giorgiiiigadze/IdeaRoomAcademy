@@ -11,7 +11,7 @@ export function usePageTransition() {
     overlay.style.cssText = `
       position: fixed;
       inset: 0;
-      background: #fff;
+      background: #FFA500;
       z-index: 9999;
       transform: translateY(100%);
       pointer-events: none;

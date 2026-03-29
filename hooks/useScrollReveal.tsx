@@ -10,17 +10,21 @@ export function useScrollReveal(count: number) {
   const refs = useRef<(HTMLElement | null)[]>([])
 
   useEffect(() => {
-    refs.current.forEach((el) => {
-      gsap.from(el, {
-        scrollTrigger: {
-          trigger: el,
-          start: "top 100%",
-          end: "top 70%",
-          scrub: true,
-        },
-        y: "100%",
+    const ctx = gsap.context(() => {
+      refs.current.forEach((el) => {
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 100%",
+            end: "top 70%",
+            scrub: true,
+          },
+          y: "100%",
+        })
       })
     })
+
+    return () => ctx.revert()
   }, [count])
 
   return Array.from({ length: count }, (_, i) => (el: HTMLElement | null) => {

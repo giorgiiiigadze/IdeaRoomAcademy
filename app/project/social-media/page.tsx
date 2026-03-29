@@ -1,4 +1,4 @@
-import ProjectPageInfromation from "@/components/projects-layout/ProjectPageInfo"
+import ProjectPageInfromation from "@/components/projectLayout/ProjectPageInfo"
 
 export default function SocialMediaPage(){
     return (

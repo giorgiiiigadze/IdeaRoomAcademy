@@ -33,10 +33,10 @@ export default function FeaturesSection() {
   const cardRefs = useClipReveal(3, 0.075)
 
   return (
-    <section className="w-full max-w-[1389px] py-24 px-6">
+    <section className="w-full max-w-[1389px] py-16 px-6">
       
-      <div className="max-w-[1389px] mx-auto mb-20 flex items-center justify-center">
-        <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-tight max-w-4xl text-center">
+      <div className="max-w-[1389px] mx-auto mb-20 flex items-center justify-start">
+        <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-tight max-w-4xl">
           <div className="overflow-hidden">
             <span ref={ref1} className="block">
               The academy built for doers.

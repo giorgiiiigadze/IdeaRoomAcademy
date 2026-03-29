@@ -1,4 +1,4 @@
-import ProjectPageInformation from "@/components/projects-layout/ProjectPageInfo"
+import ProjectPageInformation from "@/components/projectLayout/ProjectPageInfo"
 
 export default function VideoEditingPage() {
   return (
