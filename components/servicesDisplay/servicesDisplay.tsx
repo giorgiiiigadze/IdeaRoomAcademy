@@ -10,9 +10,9 @@ const servicesLinks = [
 ]
 export default function ServicesDisplay() {
     return (
-        <section className="w-full max-w-[1389px] flex flex-col px-6">
+        <section className="w-full max-w-[1389px] py-16 px-6">
 
-            <div className="mb-10">
+            <div className="mb-4">
                 <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-tight max-w-4xl">
                     <div className="overflow-hidden">
                         <span className="block text-brand-purple-6">

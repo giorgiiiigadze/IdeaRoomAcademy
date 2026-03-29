@@ -1,13 +1,14 @@
 import ClientResponse from "@/components/clientResponse/clientDisplay";
 import WorkInAction from "@/components/workDisplay/workDisplay";
 import BlogDisplay from "@/components/blogDisplay/blogDisplay";
-import SplitTextReveal from "@/components/ui/SplitTextReveal";
 import SeeAll from "@/components/ui/seeAll";
 
 import LandingPageHero from "@/components/landingPageHero/landingPageHero";
 import BrandsGrid from "@/components/brandsGrid/brandsGrid";
 import FeaturesSection from "@/components/FeaturesSection/FeaturesSection";
 import ServicesDisplay from "@/components/servicesDisplay/servicesDisplay";
+
+import GrowingSection from "@/components/growingSection/growingSection";
 
 export default async function Home() {
   return (
@@ -21,37 +22,20 @@ export default async function Home() {
 
         <FeaturesSection />
 
-        <div className="h-[1px] w-full bg-gray-200 mt-10 mb-10"/>
-
-        <section className="h-screen max-h-[700px] w-full flex items-center justify-center">
-          
-          <div aria-hidden="true" className="w-full overflow-hidden py-6  gap-6 flex items-center flex-col">
-            <SplitTextReveal
-              text="Start Growing"
-              className="text-[144px] font-black uppercase leading-none tracking-tight text-foreground"
-            />
-            <SplitTextReveal
-              text="With Idearoom"
-              className="text-[144px] font-black uppercase leading-none tracking-tight text-brand-orange-5"
-            />
-          </div>
-
-        </section>
-
-        <div className="h-[1px] w-full bg-gray-200 mt-10 mb-10"/>
+        <GrowingSection />
 
         <ServicesDisplay />
 
         <div className="w-full max-w-[1389px] flex flex-col items-center gap-8 px-4">
-          <WorkInAction />
+          <WorkInAction count={4} text="See our work in action"/>
           <SeeAll href="/works" label="View Collections" hint="Find inspiration for your projects" />
         </div>
 
-        <div className="h-[1px] w-full bg-gray-200 mt-10 mb-10"/>
+        <div className="h-[1px] w-full bg-gray-200 mt-4 mb-4"/>
 
         <ClientResponse />
         
-        <div className="h-[1px] w-full bg-gray-200 mt-10 mb-10"/>
+        <div className="h-[1px] w-full bg-gray-200 mt-4 mb-4"/>
         
         <div className="w-full max-w-[1389px] flex flex-col items-center gap-8 px-4">
           <BlogDisplay count={3} mainText="Blog" secondaryText="Get interesting stories about people, projects and career opportunities directly to your mailbox"/>

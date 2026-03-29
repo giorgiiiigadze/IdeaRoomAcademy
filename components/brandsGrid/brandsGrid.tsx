@@ -21,13 +21,13 @@ const duplicated = [...brands, ...brands]
 
 export default function BrandsGrid() {
   const trackRef = useRef<HTMLDivElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+  const spotlightRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const track = trackRef.current
     if (!track) return
-
     const totalWidth = track.scrollWidth / 2
-
     gsap.to(track, {
       x: -totalWidth,
       duration: 20,
@@ -36,13 +36,41 @@ export default function BrandsGrid() {
     })
   }, [])
 
+  useEffect(() => {
+    const grid = gridRef.current
+    const spotlight = spotlightRef.current
+    if (!grid || !spotlight) return
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = grid.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      gsap.to(spotlight, {
+        x,
+        y,
+        duration: 0.4,
+        ease: "power2.out",
+      })
+      gsap.to(spotlight, { opacity: 1, duration: 0.3 })
+    }
+
+    const handleMouseLeave = () => {
+      gsap.to(spotlight, { opacity: 0, duration: 0.3 })
+    }
+
+    grid.addEventListener("mousemove", handleMouseMove)
+    grid.addEventListener("mouseleave", handleMouseLeave)
+    return () => {
+      grid.removeEventListener("mousemove", handleMouseMove)
+      grid.removeEventListener("mouseleave", handleMouseLeave)
+    }
+  }, [])
+
   return (
     <div className="w-full max-w-[1389px] flex flex-col items-center py-10">
-      {/* <span className="font-semibold text-xl mb-10 text-brand-purple-5 text-center px-4">
-        Trusted by current and soon to be world-class brands.
-      </span> */}
 
-      <div className="w-full overflow-hidden md:hidden border-t border-b border-border py-6">
+      {/* Mobile marquee */}
+      <div className="w-full overflow-hidden md:hidden py-6">
         <div ref={trackRef} className="flex gap-12 w-max">
           {duplicated.map((brand, i) => (
             <div key={brand.name + i} className="flex items-center justify-center px-4 shrink-0">
@@ -52,12 +80,24 @@ export default function BrandsGrid() {
         </div>
       </div>
 
-      <div className="hidden md:flex w-full flex-col">
+      <div ref={gridRef} className="relative hidden md:flex w-full flex-col overflow-hidden">
+
+        <div
+          ref={spotlightRef}
+          className="pointer-events-none absolute z-10 opacity-0 -translate-x-1/2 -translate-y-1/2"
+          style={{
+            width: 300,
+            height: 300,
+            background: "radial-gradient(circle, rgba(245,166,35,0.2) 0%, transparent 70%)",
+            borderRadius: "50%",
+          }}
+        />
+
         <div className="w-full grid grid-cols-3 h-[270px]">
           {brands.slice(0, 3).map((brand) => (
             <div
               key={brand.name}
-              className="border-r border-b border-border flex items-center justify-center py-20 px-8"
+              className="border-r border-b border-border flex items-center justify-center py-20 px-8 transition-colors duration-300"
             >
               <Image src={brand.logo} alt={brand.name} width={130} height={50} className="object-contain" />
             </div>
@@ -68,21 +108,21 @@ export default function BrandsGrid() {
           {brands.slice(3).map((brand, i) => (
             <div
               key={brand.name + i}
-              className={`border-r border-b border-border flex items-center justify-center py-14 px-4 ${
-                i === 6 ? "bg-foreground" : ""
-              }`}
+              className={`border-r border-b border-border flex items-center justify-center py-14 px-4 transition-colors duration-300
+              
+              `}
             >
               <Image
                 src={brand.logo}
                 alt={brand.name}
                 width={80}
                 height={36}
-                className={`object-contain ${i === 6 ? "invert" : ""}`}
               />
             </div>
           ))}
         </div>
       </div>
+
     </div>
   )
 }
