@@ -41,9 +41,9 @@ const servicesLinks = [
 
 export default function ServicesDisplay() {
     return (
-        <section className="w-full max-w-[1389px] py-16 px-6">
+        <section className="w-full max-w-[1389px] py-16">
 
-            <div className="mb-4">
+            <div className="mb-4 px-6">
                 <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-tight max-w-4xl">
                     <div className="overflow-hidden">
                         <span className="block text-brand-purple-6">
@@ -53,15 +53,21 @@ export default function ServicesDisplay() {
                 </h2>
             </div>
 
-            <div className="w-full grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="
+                flex overflow-x-auto snap-x snap-mandatory gap-3 px-6 pb-4
+                sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0
+                lg:grid-cols-3
+                [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+            ">
                 {servicesLinks.map((service) => (
-                    <ServiceItem
-                        key={service.label}
-                        label={service.label}
-                        description={service.description}
-                        image={service.image}
-                        href={service.href}
-                    />
+                    <div key={service.label} className="snap-start shrink-0 w-[75vw] sm:w-auto">
+                        <ServiceItem
+                            label={service.label}
+                            description={service.description}
+                            image={service.image}
+                            href={service.href}
+                        />
+                    </div>
                 ))}
             </div>
 

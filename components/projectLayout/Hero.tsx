@@ -25,7 +25,7 @@ export default function HeroSection({ title, description, buttonText, buttonUrl,
 
   return (
     <div
-      className="relative w-full h-screen flex items-center justify-center overflow-hidden pt-[14px]"
+      className="relative w-full h-screen flex items-center justify-center overflow-hidden pt-[14px] bg-neutral-900"
       style={{
         backgroundImage: "url('/project-images/main-bg-image.jpg')",
         backgroundSize: "cover",

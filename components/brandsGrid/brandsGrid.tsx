@@ -69,7 +69,6 @@ export default function BrandsGrid() {
   return (
     <div className="w-full max-w-[1389px] flex flex-col items-center py-10">
 
-      {/* Mobile marquee */}
       <div className="w-full overflow-hidden md:hidden py-6">
         <div ref={trackRef} className="flex gap-12 w-max">
           {duplicated.map((brand, i) => (
@@ -99,6 +98,7 @@ export default function BrandsGrid() {
               key={brand.name}
               className="border-r border-b border-border flex items-center justify-center py-20 px-8 transition-colors duration-300"
             >
+              {/* oklch(87% 0 0) */}
               <Image src={brand.logo} alt={brand.name} width={130} height={50} className="object-contain" />
             </div>
           ))}

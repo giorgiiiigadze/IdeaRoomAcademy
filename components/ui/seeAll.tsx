@@ -32,20 +32,20 @@ export default function SeeAll({ href, label = "See all", hint }: SeeAllProps) {
   }
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
       {hint && (
-        <span className="text-muted-foreground text-base">{hint}</span>
+        <span className="text-muted-foreground text-sm sm:text-base text-center">{hint}</span>
       )}
 
-      {hint && <ArrowRight size={16} className="text-muted-foreground" />}
+      {hint && <ArrowRight size={14} className="text-muted-foreground hidden sm:block" />}
 
       <button
         onClick={() => navigate(href)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="relative flex items-center gap-2 text-foreground font-bold text-base cursor-pointer"
+        className="relative flex items-center gap-2 text-foreground font-bold text-sm sm:text-base cursor-pointer"
       >
-        {!hint && <ArrowRight size={16} />}
+        {!hint && <ArrowRight size={14} />}
         {label}
         <span
           ref={underlineRef}
