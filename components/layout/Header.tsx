@@ -148,11 +148,11 @@ export default function Header() {
 
   return (
     <>
-        <header className="w-full absolute top-0 left-0 right-0 z-50">
-          <div className={`w-full max-w-[1389px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between mt-2 backdrop-blur-md rounded-2xl ${mobileOpen ? "bg-white" : ""}`}>
-          <Link href="/">
-            <Image src="/logo.svg" alt="Idearoom logo" width={100} height={54} priority />
-          </Link>
+        <header className="w-full absolute top-0 left-0 right-0 z-50 px-4 lg:px-8">
+            <div className={`w-full max-w-[1389px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between mt-2 backdrop-blur-md rounded-2xl ${mobileOpen ? "bg-gray-500" : ""}`}>
+            <Link href="/">
+              <Image src="/logo.svg" alt="Idearoom logo" width={100} height={54} priority />
+            </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
             <Link href="/" className="font-medium px-3 py-2 rounded-md text-brand-orange-5 hover:bg-purple-100 transition-colors duration-200">Main</Link>
@@ -208,7 +208,7 @@ export default function Header() {
             <div ref={itemsRef} className="flex flex-col gap-8">
               {mobileGroups.map((group) => (
                 <div key={group.group} className="flex flex-col gap-1">
-                  <span className="text-xs text-neutral-400 uppercase tracking-widest mb-2">
+                  <span className="text-xs text-white uppercase tracking-widest mb-2">
                     {group.group}
                   </span>
                   {group.links.map((l) => (

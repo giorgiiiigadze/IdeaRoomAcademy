@@ -23,16 +23,17 @@ export default async function BlogDisplay({ count, mainText, secondaryText }: Bl
   const featuredBlogs = count ? blogs.slice(0, count) : blogs
 
   return (
-    <div className="flex flex-col items-center gap-4 sm:gap-6 mb-6 w-full px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col items-center sm:gap-6 mb-6 w-full px-4 sm:px-6 lg:px-8">
 
       {mainText && (
-        <h1 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-orange-5 m-2 text-center leading-tight">
-          {mainText}
-        </h1>
+      <h1 className="text-2xl sm:text-[32px] font-bold text-brand-orange-5 m-2 text-center">
+        Blogs
+      </h1>
       )}
 
       {secondaryText && (
-        <span className="text-base sm:text-lg lg:text-[20px] font-bold text-brand-purple-3 text-center px-4">
+
+        <span className="text-lg sm:text-[20px] font-bold text-brand-purple-5 text-center">
           {secondaryText}
         </span>
       )}

@@ -7,10 +7,11 @@ import { usePageTransition } from "@/hooks/usePageTransition"
 interface ServiceItemProps {
     label: string
     description: string
+    image: string
     href: string
 }
 
-export default function ServiceItem({ label, description, href }: ServiceItemProps) {
+export default function ServiceItem({ label, description, image, href }: ServiceItemProps) {
     const { navigate } = usePageTransition()
     const panelRef = useRef<HTMLDivElement>(null)
 
@@ -40,7 +41,7 @@ export default function ServiceItem({ label, description, href }: ServiceItemPro
                 onTouchStart={animateIn}
                 onTouchEnd={animateOut}
                 style={{
-                    backgroundImage: "url('/test-image.png')",
+                    backgroundImage: `url('${image}')`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
@@ -55,7 +56,7 @@ export default function ServiceItem({ label, description, href }: ServiceItemPro
                         backdropFilter: "blur(6px)",
                     }}
                 >
-                    <span className="text-white text-7xl sm:text-xl font-bold text-center">{label}</span>
+                    <span className="text-white text-3xl sm:text-xl font-bold text-center">{label}</span>
                     <span className="text-white text-xs sm:text-sm text-center">{description}</span>
                 </div>
             </main>

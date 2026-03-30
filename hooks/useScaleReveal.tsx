@@ -10,15 +10,20 @@ export function useScaleReveal() {
   const ref = useRef(null)
 
   useEffect(() => {
-    gsap.from(ref.current, {
-      scrollTrigger: {
-        trigger: ref.current,
-        start: "top 95%",
-        end: "top 70%",
-        scrub: 0.25,
-      },
-      scale: 0.9,
+    const ctx = gsap.context(() => {
+      gsap.from(ref.current, {
+        scale: 0.9,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ref.current,
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      })
     })
+
+    return () => ctx.revert()
   }, [])
 
   return ref

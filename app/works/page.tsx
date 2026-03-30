@@ -21,12 +21,9 @@ export default function WorkPage() {
                     <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] font-bold text-white leading-tight mt-2">
                         Our Work
                     </h1>
-                    <p className="text-white/60 mt-3 text-base max-w-xl">
-                        A curated selection of projects across branding, motion, web, and social.
-                    </p>
                 </div>
 
-                <WorkInAction showSearch />
+                <WorkInAction showSearch variant="always"/>
             </main>
 
         </div>

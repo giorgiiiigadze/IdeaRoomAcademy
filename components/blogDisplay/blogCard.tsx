@@ -40,7 +40,7 @@ export default function BlogCard({ title, description, category, slug, image }: 
 
         <Link
           href={`/blogs/${slug}`}
-          className="mt-2 inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-2.5 rounded-full w-fit transition-colors duration-200"style={{
+          className="mt-2 inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-2.5 rounded-xl w-fit transition-colors duration-200"style={{
                 background: "linear-gradient(to right, #7B2FBE, #F5A623)"
               }}
         >

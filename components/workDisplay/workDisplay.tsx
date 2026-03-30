@@ -9,9 +9,10 @@ interface WorkInActionProps {
   count?: number
   text?: string
   showSearch?: boolean
+  variant?: "hover" | "always"
 }
 
-export default function WorkInAction({ count, text, showSearch }: WorkInActionProps) {
+export default function WorkInAction({ count, text, showSearch, variant = "hover" }: WorkInActionProps) {
   const divRef = useScaleReveal()
   const [query, setQuery] = useState("")
 
@@ -30,7 +31,7 @@ export default function WorkInAction({ count, text, showSearch }: WorkInActionPr
         <div className="mb-4">
           <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-tight max-w-4xl">
             <div className="overflow-hidden">
-              <span className="block text-brand-orange-6">{text}</span>
+              <span className="block text-brand-purple-6">{text}</span>
             </div>
           </h2>
         </div>
@@ -57,10 +58,11 @@ export default function WorkInAction({ count, text, showSearch }: WorkInActionPr
               title={work.title}
               category={work.category}
               href={work.href}
+              variant={variant}
             />
           ))
         ) : (
-          <p className="text-white/60 col-span-2 text-center py-12">No results found.</p>
+          <p className="text-white/60 col-span-2 text-center py-12">No works found with that name.</p>
         )}
       </div>
 

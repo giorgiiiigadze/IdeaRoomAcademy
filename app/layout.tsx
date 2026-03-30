@@ -20,9 +20,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Idearoom academy",
-  description: "Idearoom academy website created by Next.js framewrok",
-};
+  title: "IdeaRoom Academy",
+  description: "Where great ideas come to life.",
+  metadataBase: new URL("https://idea-room-academy.vercel.app"),
+  openGraph: {
+    title: "IdeaRoom Academy",
+    description: "Where great ideas come to life.",
+    url: "https://idea-room-academy.vercel.app",
+    siteName: "IdeaRoom Academy",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "IdeaRoom Academy",
+    description: "Where great ideas come to life.",
+  },
+}
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
