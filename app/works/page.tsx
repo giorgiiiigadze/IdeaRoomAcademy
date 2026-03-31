@@ -23,7 +23,7 @@ export default function WorkPage() {
                     </h1>
                 </div>
 
-                <WorkInAction showSearch variant="always"/>
+                <WorkInAction/>
             </main>
 
         </div>

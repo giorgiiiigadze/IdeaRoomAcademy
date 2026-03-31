@@ -9,7 +9,7 @@ export default async function ClientResponse() {
       <h1 className="text-2xl sm:text-[32px] font-bold text-brand-orange-5 m-2 text-center">
         What Our Clients Say
       </h1>
-      <span className="text-lg sm:text-[20px] font-bold text-brand-purple-5 text-center">
+      <span className="text-lg sm:text-[20px] font-light text-brand-purple-6 text-center">
         We Strive To Create A Painless Client Experience.
       </span>
 

@@ -1,68 +1,38 @@
 "use client"
 
-import { useScaleReveal } from "@/hooks/useScaleReveal"
 import WorkCard from "./workCard"
-import { useState } from "react"
 import { getWorks } from "@/lib/works"
 
 interface WorkInActionProps {
   count?: number
   text?: string
-  showSearch?: boolean
-  variant?: "hover" | "always"
 }
 
-export default function WorkInAction({ count, text, showSearch, variant = "hover" }: WorkInActionProps) {
-  const divRef = useScaleReveal()
-  const [query, setQuery] = useState("")
-
-  const featuredWorks = getWorks(count)
-  const filteredWorks = showSearch && query
-    ? featuredWorks.filter((w) =>
-        w.title.toLowerCase().includes(query.toLowerCase()) ||
-        w.category.toLowerCase().includes(query.toLowerCase())
-      )
-    : featuredWorks
+export default function WorkInAction({ count, text }: WorkInActionProps) {
+  const works = getWorks(count)
 
   return (
-    <div className="w-full max-w-[1389px] flex flex-col mt-14 px-6" ref={divRef}>
+    <div className="flex flex-col items-center w-full">
 
       {text && (
-        <div className="mb-4">
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-tight max-w-4xl">
-            <div className="overflow-hidden">
-              <span className="block text-brand-purple-6">{text}</span>
-            </div>
-          </h2>
-        </div>
-      )}
-
-      {showSearch && (
-        <div className="relative w-full max-w-md mb-6">
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search by title or category..."
-            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-border bg-white/10 backdrop-blur-sm text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 text-sm"
-          />
-        </div>
+        <h2 className="text-[13px] font-bold tracking-[0.2em] uppercase text-[#8471D9] mb-10">
+          {text}
+        </h2>
       )}
 
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-        {filteredWorks.length > 0 ? (
-          filteredWorks.map((work) => (
+        {works.length > 0 ? (
+          works.map((work) => (
             <WorkCard
               key={work.href}
               image={work.image}
               title={work.title}
               category={work.category}
               href={work.href}
-              variant={variant}
             />
           ))
         ) : (
-          <p className="text-white/60 col-span-2 text-center py-12">No works found with that name.</p>
+          <p className="text-muted-foreground col-span-2 text-center py-12">No works found.</p>
         )}
       </div>
 

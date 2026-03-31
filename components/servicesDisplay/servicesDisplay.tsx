@@ -1,76 +1,65 @@
-import ServiceItem from "./serviceItem"
+import ServiceCard from "./serviceCard"
 
-const servicesLinks = [
+const services = [
   {
     label: "Video Editing",
-    href: "/project/video-editing",
-    description: "Cinematic cuts and seamless edits that bring your story to life.",
-    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800",
+    href: "/projects/video-editing",
+    description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress, Shopify & HubSpot. Whether you're a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website.",
+    icon: "/service-icons/service-icon-test.svg",
   },
   {
-    label: "Branding",
-    href: "/project/branding",
-    description: "Bold identities that make your brand impossible to forget.",
-    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800",
+    label: "Motion Design",
+    href: "/projects/motion-design",
+    description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress, Shopify & HubSpot. Whether you're a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website.",
+    icon: "/service-icons/service-icon-test.svg",
   },
   {
     label: "Social Media",
-    href: "/project/social-media",
-    description: "Scroll-stopping content that grows your audience and drives engagement.",
-    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800",
+    href: "/projects/social-media",
+    description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress, Shopify & HubSpot. Whether you're a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website.",
+    icon: "/service-icons/service-icon-test.svg",
   },
   {
     label: "Web Development",
-    href: "/project/web-development",
-    description: "Fast, scalable websites built with clean code and great UX.",
-    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800",
+    href: "/projects/web-development",
+    description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress,  Shopify & HubSpot. Whether you're a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website.",
+    icon: "/service-icons/service-icon-test.svg",
   },
   {
     label: "UI/UX Design",
     href: "#",
-    description: "Intuitive interfaces designed to delight users at every click.",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800",
+    description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress, Shopify & HubSpot. Whether you're a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website.",
+    icon: "/service-icons/service-icon-test.svg",
   },
   {
-    label: "Motion Design",
-    href: "/project/motion-design",
-    description: "Animations and visuals that add energy to your brand.",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800",
+    label: "Branding",
+    href: "/projects/branding",
+    description: "Our team of techie talents have decades of combined experience in creating completely bespoke websites using WordPress, Shopify & HubSpot. Whether you're a startupor an established enterprise, we can sprinkle our digital magic to conjure you up a beautiful website.",
+    icon: "/service-icons/service-icon-test.svg",
   },
 ]
 
 export default function ServicesDisplay() {
-    return (
-        <section className="w-full max-w-[1389px] py-16">
+  return (
+    <section className="w-full bg-[#EFF2F5] flex items-center justify-around">
+      <main className="max-w-[1389px] flex flex-col items-center gap-10 py-20">
+        <h3 className="text-[16px] font-bold tracking-[0.2em] uppercase text-[#8471D9]">
+          Our Services
+        </h3>
 
-            <div className="mb-4 px-6">
-                <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-tight max-w-4xl">
-                    <div className="overflow-hidden">
-                        <span className="block text-brand-purple-6">
-                            Services provided by us
-                        </span>
-                    </div>
-                </h2>
-            </div>
+        <div className="w-full grid grid-cols-3 gap-6">
+          {services.map((service) => (
+            <ServiceCard
+              key={service.label}
+              label={service.label}
+              description={service.description}
+              icon={service.icon}
+              href={service.href}
+            />
+          ))}
+        </div>        
+      </main>
 
-            <div className="
-                flex overflow-x-auto snap-x snap-mandatory gap-3 px-6 pb-4
-                sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0
-                lg:grid-cols-3
-                [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
-            ">
-                {servicesLinks.map((service) => (
-                    <div key={service.label} className="snap-start shrink-0 w-[75vw] sm:w-auto">
-                        <ServiceItem
-                            label={service.label}
-                            description={service.description}
-                            image={service.image}
-                            href={service.href}
-                        />
-                    </div>
-                ))}
-            </div>
-
-        </section>
-    )
+    </section>
+  )
 }

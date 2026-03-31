@@ -42,7 +42,7 @@ export default function ProjectNavigation() {
                     href={l.href}
                     onClick={() => setOpen(false)}
                     className={`block px-5 py-3 text-sm font-medium transition-colors duration-200
-                      ${isActive ? "bg-gray-100 text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted"}
+                      ${isActive ? "bg-white text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted"}
                     `}
                   >
                     {l.label}
@@ -63,7 +63,7 @@ export default function ProjectNavigation() {
                 <Link
                   href={l.href}
                   className={`block px-6 py-4 text-sm font-medium whitespace-nowrap transition-colors duration-200 rounded-full
-                    ${isActive ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}
+                    ${isActive ? "bg-white text-foreground" : "text-muted-foreground hover:text-foreground"}
                   `}
                 >
                   {l.label}

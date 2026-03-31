@@ -1,9 +1,11 @@
 export type { Testimonial } from "./clients"
 export type { Project } from "./projects"
+export type { Service } from "./services"
 export type { Blog } from "./blogs"
 export type { Work } from "./works"
 
 export { getClientResponses } from "./clients"
 export { getProjectInformation } from "./projects"
+export { getServices } from "./services"
 export { getBlogs } from "./blogs"
 export { getWorks } from "./works"

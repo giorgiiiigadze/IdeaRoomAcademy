@@ -13,8 +13,8 @@ interface Blog {
 interface BlogDisplayProps {
   count?: number
   showViewAll?: boolean
-  mainText?: string
-  secondaryText?: string
+  mainText: string
+  secondaryText: string
 }
 
 export default async function BlogDisplay({ count, mainText, secondaryText }: BlogDisplayProps) {
@@ -23,22 +23,19 @@ export default async function BlogDisplay({ count, mainText, secondaryText }: Bl
   const featuredBlogs = count ? blogs.slice(0, count) : blogs
 
   return (
-    <div className="flex flex-col items-center sm:gap-6 mb-6 w-full px-4 sm:px-6 lg:px-8">
+    <div className="w-full py-8 flex flex-col items-center gap-10">
+      <div>
 
-      {mainText && (
-      <h1 className="text-2xl sm:text-[32px] font-bold text-brand-orange-5 m-2 text-center">
-        Blogs
-      </h1>
-      )}
+        <h1 className="text-2xl sm:text-[32px] font-bold text-brand-orange-5 m-2 text-center">
+          {mainText}
+        </h1>
 
-      {secondaryText && (
-
-        <span className="text-lg sm:text-[20px] font-bold text-brand-purple-5 text-center">
+        <span className="text-lg sm:text-[20px] w-[50%] font-bold text-brand-purple-5 text-center">
           {secondaryText}
         </span>
-      )}
+      </div>
 
-      <div className="w-full max-w-[1389px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+      <div className="flex items-start max-w-[1389px] gap-2">
         {featuredBlogs.map((blog) => (
           <BlogCard
             key={blog.id}

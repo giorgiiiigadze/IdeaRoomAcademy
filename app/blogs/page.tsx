@@ -16,7 +16,7 @@ export default async function BlogsPage(){
     const blogs: Blog[] = await getBlogs()
 
     return (
-        <div className="flex flex-col items-center gap-6 mb-6">
+        <div className="flex flex-col items-center gap-6 mb-6 bg-[#EFF2F5]">
 
             <HeroSection />
 
