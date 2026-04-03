@@ -9,36 +9,35 @@ type ClientResponseCardProps = {
 
 export default function ClientResponseCard({ text, name, title, image }: ClientResponseCardProps) {
   return (
-    <div className="flex-1 min-h-[240px] rounded-2xl shadow-xl flex flex-col items-start justify-between">
+    <div className="rounded-2xl flex flex-col items-start gap-6 p-6">
 
-        <Image
-          src="/client-files/client-tag.svg"
-          width={30}
-          height={30}
-          alt="Picture of the author"
-          className="ml-6 mb-6 absolute"
-        />
+      <Image
+        src="/client-files/client-tag.svg"
+        width={30}
+        height={30}
+        alt="quote"
+      />
 
-      <main className="flex flex-col gap-8 rounded-xl p-6 mt-6">
-        <span className="text-muted-foreground text-sm leading-relaxed flex-1">
-          {text}
-        </span>
+      <span className="text-muted-foreground text-sm leading-relaxed">
+        {text}
+      </span>
 
-        <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3">
+        {/* 👇 wrapper enforces the circle crop */}
+        <div className="relative w-[52px] h-[52px] rounded-full overflow-hidden shrink-0">
           <Image
             src={image}
             alt={name}
-            width={48}
-            height={48}
-            className="rounded-full object-cover"
+            fill
+            className="object-cover"
           />
-
-          <div className="flex flex-col">
-            <span className="text-base font-semibold">{name}</span>
-            <span className="text-sm text-muted-foreground">{title}</span>
-          </div>
         </div>
-      </main>
+
+        <div className="flex flex-col">
+          <span className="text-base font-semibold">{name}</span>
+          <span className="text-sm text-muted-foreground">{title}</span>
+        </div>
+      </div>
 
     </div>
   )

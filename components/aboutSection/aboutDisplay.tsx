@@ -22,7 +22,7 @@ export default function AboutDisplay({ mainText, secondaryText }: AboutDisplayPr
       <div className="w-full h-[718px] flex items-center justify-center mt-6">
         <AboutVideoDialog
           videoUrl="/videos/test-video.mp4"
-          thumbnail="/about-us-test-image.png"
+          thumbnail="/about-images/about-us-test-image.png"
         />
       </div>
 

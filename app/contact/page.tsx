@@ -57,8 +57,39 @@ export default function ContactsPage(){
                     </div>
                 </div>
 
-                <div className="flex bg-[#F3EFF8F3] rounded-2xl h-full flex-1 p-4">
-                    <span>Hello</span>
+                <div className="flex bg-[#F3EFF8F3] rounded-2xl h-full flex-1 flex flex-col gap-6 p-8">
+                    <div className="flex gap-4">
+                        <input
+                            type="text"
+                            placeholder="Name"
+                            className="flex-1 h-[48px] rounded-lg px-4 text-sm outline-none"
+                            style={{
+                                background: "#fff"
+                            }}
+                        />
+                        <input
+                            type="email"
+                            placeholder="E-MAIL"
+                            className="flex-1 h-[48px] rounded-lg px-4 text-sm outline-none"
+                            style={{
+                                background: "#fff"
+                            }}    
+                        />
+                    </div>
+
+                    <textarea
+                        placeholder="Text here ..."
+                        className="w-full flex-1 min-h-[160px] rounded-lg px-4 py-3 text-sm outline-none resize-none"
+                        style={{
+                            background: "#fff"
+                        }}
+                    />
+
+                    <div className="flex justify-end">
+                        <button className="px-10 py-3 bg-[#F5A623] hover:bg-[#e09510] transition-colors text-white font-semibold rounded-full">
+                            Send
+                        </button>
+                    </div>
                 </div>
 
             </div>

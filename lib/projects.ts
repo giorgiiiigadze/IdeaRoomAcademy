@@ -3,8 +3,9 @@ export type Project = {
   title: string
   description: string
   thumbnail: string
-  video: string
   slug: string
+  video: string
+
 }
 
 const projectsData: Record<string, Project[]> = {
@@ -16,6 +17,9 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/video-editing-1.jpg",
       video: "/videos/test-video.mp4",
       slug: "cinematic-brand-film-novapulse",
+
+      // We will have the seperate table for the projects connected with foreign key
+
     },
     {
       id: 2,
@@ -24,6 +28,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/video-editing-2.jpg",
       video: "/videos/test-video.mp4",
       slug: "documentary-series-vivenne-foundation",
+
     },
     {
       id: 3,
@@ -32,6 +37,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/video-editing-3.jpg",
       video: "/videos/test-video.mp4",
       slug: "social-media-campaign-lumenx",
+
     },
     {
       id: 4,
@@ -40,6 +46,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/video-editing-4.jpg",
       video: "/videos/test-video.mp4",
       slug: "event-highlight-reel-arcadia-summit",
+
     },
   ],
   "branding": [
@@ -50,6 +57,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/branding-1.jpg",
       video: "/videos/test-video.mp4",
       slug: "k2-company-branding",
+
     },
     {
       id: 2,
@@ -58,6 +66,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/branding-2.jpg",
       video: "/videos/test-video.mp4",
       slug: "rebranding-solaris-tech",
+
     },
     {
       id: 3,
@@ -66,6 +75,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/branding-3.jpg",
       video: "/videos/test-video.mp4",
       slug: "startup-identity-fable-studio",
+
     },
     {
       id: 4,
@@ -74,6 +84,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/branding-4.jpg",
       video: "/videos/test-video.mp4",
       slug: "brand-system-orion-financial",
+
     },
   ],
   "social-media": [
@@ -84,6 +95,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/social-media-1.jpg",
       video: "/videos/social-media-1.mp4",
       slug: "social-growth-bloom-skincare",
+
     },
     {
       id: 2,
@@ -92,6 +104,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/social-media-2.jpg",
       video: "/videos/social-media-2.mp4",
       slug: "linkedin-strategy-vertex-consulting",
+
     },
     {
       id: 3,
@@ -100,6 +113,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/social-media-3.jpg",
       video: "/videos/social-media-3.mp4",
       slug: "tiktok-launch-kova-apparel",
+
     },
     {
       id: 4,
@@ -108,6 +122,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/social-media-4.jpg",
       video: "/videos/social-media-4.mp4",
       slug: "paid-social-nexum-saas",
+
     },
   ],
   "web-development": [
@@ -118,6 +133,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/web-development-1.jpg",
       video: "/videos/web-development-1.mp4",
       slug: "ecommerce-platform-halo-goods",
+
     },
     {
       id: 2,
@@ -126,6 +142,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/web-development-2.jpg",
       video: "/videos/web-development-2.mp4",
       slug: "saas-dashboard-trackr",
+
     },
     {
       id: 3,
@@ -134,6 +151,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/web-development-3.jpg",
       video: "/videos/web-development-3.mp4",
       slug: "corporate-redesign-meridian-group",
+    
     },
     {
       id: 4,
@@ -142,6 +160,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/web-development-4.jpg",
       video: "/videos/web-development-4.mp4",
       slug: "booking-system-aura-wellness",
+
     },
   ],
   "motion-design": [
@@ -152,6 +171,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/motion-design-1.jpg",
       video: "/videos/motion-design-1.mp4",
       slug: "animated-explainer-plex-ai",
+
     },
     {
       id: 2,
@@ -160,6 +180,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/motion-design-2.jpg",
       video: "/videos/motion-design-2.mp4",
       slug: "brand-motion-system-crest-media",
+
     },
     {
       id: 3,
@@ -168,6 +189,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/motion-design-3.jpg",
       video: "/videos/motion-design-3.mp4",
       slug: "product-demo-animation-synk-app",
+
     },
     {
       id: 4,
@@ -176,6 +198,7 @@ const projectsData: Record<string, Project[]> = {
       thumbnail: "/images/thumbnails/motion-design-4.jpg",
       video: "/videos/motion-design-4.mp4",
       slug: "event-opener-luminary-conference",
+
     },
   ],
 }

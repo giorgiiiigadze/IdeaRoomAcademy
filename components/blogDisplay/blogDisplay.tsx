@@ -24,13 +24,12 @@ export default async function BlogDisplay({ count, mainText, secondaryText }: Bl
 
   return (
     <div className="w-full py-8 flex flex-col items-center gap-10">
-      <div>
-
-        <h1 className="text-2xl sm:text-[32px] font-bold text-brand-orange-5 m-2 text-center">
+      <div className="flex flex-col">
+        <h1 className="text-2xl sm:text-[32px] font-bold text-brand-orange-5 text-center">
           {mainText}
         </h1>
 
-        <span className="text-lg sm:text-[20px] w-[50%] font-bold text-brand-purple-5 text-center">
+        <span className="text-lg sm:text-[20px] font-light text-brand-purple-6 text-center max-w-[700px]">
           {secondaryText}
         </span>
       </div>

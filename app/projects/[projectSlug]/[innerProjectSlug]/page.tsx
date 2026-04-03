@@ -1,12 +1,32 @@
-export default async function InnerProjectSlugPage({ params }: { params: { innerProjectSlug: string } }) {
-    const { innerProjectSlug } = await params
-    
+import HeroSection from "@/components/projectLayout/Hero"
+import InnerProjectVideosDisplay from "@/components/projectLayout/InnerProjectVideoDisplay"
+import { getProjectInformation } from "@/lib/api"
 
-    return (
-        <div>
-            Inner Project Slug
+export default async function InnerProjectSlugPage({
+  params,
+}: {
+  params: { innerProjectSlug: string; projectSlug: string }
+}) {
+  const { projectSlug, innerProjectSlug } = await params
 
-            {innerProjectSlug}
-        </div>
-    )
+  const projectInfo = await getProjectInformation(projectSlug)
+
+  const innerProjectData = projectInfo.find(
+    (project) => project.slug === innerProjectSlug
+  )
+  
+  return (
+    <div className="flex flex-col items-center justify-between gap-8 bg-[#EFF2F5]">
+        <HeroSection />
+
+            {innerProjectData && (
+                <div className="w-full h-auto max-w-[1389px] flex flex-col gap-4 items-start justify-center">
+                    <p className="text-[20px] font-bold">{innerProjectData.title}</p>
+                    <p>Description: {innerProjectData.description}</p>
+                </div>
+            )}
+
+      <InnerProjectVideosDisplay />
+    </div>
+  )
 }

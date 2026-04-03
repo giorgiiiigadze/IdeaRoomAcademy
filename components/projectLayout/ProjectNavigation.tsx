@@ -6,12 +6,12 @@ import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 
 const servicesLinks = [
-  { label: "Video Editing", href: "/project/video-editing" },
-  { label: "Branding", href: "/project/branding" },
-  { label: "Social Media", href: "/project/social-media" },
-  { label: "Web Development", href: "/project/web-development" },
+  { label: "Video Editing", href: "/projects/video-editing" },
+  { label: "Branding", href: "/projects/branding" },
+  { label: "Social Media", href: "/projects/social-media" },
+  { label: "Web Development", href: "/projects/web-development" },
   { label: "UI/UX Design", href: "#" },
-  { label: "Motion Design", href: "/project/motion-design" },
+  { label: "Motion Design", href: "/projects/motion-design" },
 ]
 
 export default function ProjectNavigation() {

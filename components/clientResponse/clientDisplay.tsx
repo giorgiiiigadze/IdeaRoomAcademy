@@ -1,5 +1,5 @@
 import { getClientResponses } from "@/lib/api"
-import ClientResponseCard from "./clientCard"
+import ClientResponseCarousel from "./ClientResponseCarousel"
 
 export default async function ClientResponse() {
   const clientResponses = await getClientResponses()
@@ -13,17 +13,7 @@ export default async function ClientResponse() {
         We Strive To Create A Painless Client Experience.
       </span>
 
-      <div className="w-full flex flex-wrap gap-4 mt-4">
-          {clientResponses.map((testimonial) => (
-            <ClientResponseCard
-              key={testimonial.id}
-              text={testimonial.text}
-              name={testimonial.name}
-              title={testimonial.title}
-              image={testimonial.image}
-            />
-        ))}
-      </div>
+      <ClientResponseCarousel testimonials={clientResponses} />
     </div>
   )
 }

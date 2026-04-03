@@ -11,6 +11,7 @@ import WorkInAction from "@/components/workDisplay/workDisplay";
 import ClientResponse from "@/components/clientResponse/clientDisplay";
 import AboutDisplay from "@/components/aboutSection/aboutDisplay";
 import BlogDisplay from "@/components/blogDisplay/blogDisplay";
+import LandingImageDisplay from "@/components/landingImageDisplay/ImageDisplay";
 
 export default async function Home() {
   return (
@@ -25,6 +26,8 @@ export default async function Home() {
         <ServicesDisplay />
 
         <ClientResponse />
+
+        <LandingImageDisplay />
 
         <AboutDisplay mainText={"About"} secondaryText={"We build meaningful long-term partnerships and deliver the best experience of digital services across the world"}/>
 
