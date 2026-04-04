@@ -32,7 +32,6 @@ export default async function BlogSlugPage({ params }: { params: { blogSlug: str
           </h2>
 
           <div className="flex items-center gap-3 text-sm text-gray-400">
-            <span className="uppercase tracking-widest">{blog.category}</span>
             <span>·</span>
             <span>
               {new Date(blog.date).toLocaleDateString("en-US", {
@@ -78,7 +77,7 @@ export default async function BlogSlugPage({ params }: { params: { blogSlug: str
         </div>
 
         <div className="w-full max-w-[1389px] flex flex-col items-center gap-8 py-10 px-4">
-          <BlogDisplay showViewAll={false} mainText="See our works in action" secondaryText="Recent Articles" />
+          <BlogDisplay />
         </div>
 
       </main>
