@@ -7,7 +7,7 @@ interface Blog {
   id: number
   title: string
   description: string
-  category: string
+  category?: string
   slug: string
   image: string
 }
@@ -26,7 +26,6 @@ export default async function BlogsPage(){
                         key={blog.id}
                         title={blog.title}
                         description={blog.description}
-                        category={blog.category}
                         slug={blog.slug}
                         image={blog.image}
                     />

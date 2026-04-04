@@ -4,6 +4,7 @@ export type Blog = {
   slug: string
   description: string
   image: string
+  category?: string
   author: string
   date: string
 }
