@@ -5,6 +5,9 @@ import Link from "next/link"
 import { useState, useRef } from "react"
 import { ChevronDown } from "lucide-react"
 import gsap from "gsap"
+import { useTranslations } from "next-intl"
+
+import LanguageToggle from "../LanguageToggle"
 
 const servicesLinks = [
   { label: "Web Development", href: "/projects/web-development", description: "Inspiring web development.", icon: "/header-icons/header-icon-test.svg" },
@@ -80,7 +83,7 @@ function DropdownMenu({ label, links }: {
   )
 }
 
-function AcademyButton() {
+function AcademyButton({ label }: { label: string }) {
   const defaultTextRef = useRef<HTMLSpanElement>(null)
   const hoverTextRef = useRef<HTMLSpanElement>(null)
 
@@ -100,13 +103,15 @@ function AcademyButton() {
       onMouseLeave={handleMouseLeave}
       className="relative overflow-hidden cursor-pointer px-6 py-2.5 rounded-full bg-brand-orange-5 text-brand-purple-5 font-bold"
     >
-      <span ref={defaultTextRef} className="block">Academy</span>
-      <span ref={hoverTextRef} className="absolute inset-0 flex items-center justify-center opacity-0">Academy</span>
+      <span ref={defaultTextRef} className="block">{label}</span>
+      <span ref={hoverTextRef} className="absolute inset-0 flex items-center justify-center opacity-0">{label}</span>
     </button>
   )
 }
 
 export default function Header() {
+  const t = useTranslations("nav")
+
   return (
     <header className="w-full absolute top-0 left-0 right-0 z-50 px-4 lg:px-8">
       <div className="w-full max-w-[1389px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between mt-2 backdrop-blur-md rounded-2xl">
@@ -117,19 +122,21 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <nav className="relative flex items-center gap-1">
             <Link href="/" className="font-medium px-3 py-2 rounded-md text-brand-orange-5 hover:bg-brand-purple-6 transition-colors duration-200">
-              Main
+              {t("main")}
             </Link>
-            <DropdownMenu label="Works" links={worksLinks} />
-            <DropdownMenu label="Services" links={servicesLinks} />
+            <DropdownMenu label={t("works")} links={worksLinks} />
+            <DropdownMenu label={t("services")} links={servicesLinks} />
             <Link href="/about" className="font-medium px-3 py-2 rounded-md text-brand-orange-5 hover:bg-brand-purple-6 transition-colors duration-200">
-              About
+              {t("about")}
             </Link>
             <Link href="/contact" className="font-medium px-3 py-2 rounded-md text-brand-orange-5 hover:bg-brand-purple-6 transition-colors duration-200">
-              Contact
+              {t("contact")}
             </Link>
           </nav>
 
-          <AcademyButton />
+          <AcademyButton label={t("academy")} />
+
+          <LanguageToggle />
         </div>
       </div>
     </header>

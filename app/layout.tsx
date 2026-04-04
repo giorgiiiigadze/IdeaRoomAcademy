@@ -7,6 +7,9 @@ import Footer from "@/components/layout/Footer/Footer";
 
 import { cn } from "@/lib/utils";
 
+import { NextIntlClientProvider } from "next-intl"
+import { getLocale, getMessages } from "next-intl/server"
+
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const geistSans = Geist({
@@ -37,21 +40,26 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const locale = await getLocale()
+  const messages = await getMessages()
+
   return (
     <html
-      lang="en"
+      lang={locale}
       suppressHydrationWarning
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
-          <div className="w-full flex flex-col items-center min-h-screen bg-background">
-              <Header />
+        <div className="w-full flex flex-col items-center min-h-screen bg-background">
+          <NextIntlClientProvider messages={messages}>
+            <Header />
             <main className="w-full">
               {children}
             </main>
             <Footer />
-          </div>
+          </NextIntlClientProvider>
+        </div>
       </body>
     </html>
   )

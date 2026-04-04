@@ -1,5 +1,7 @@
 import HeroSection from "@/components/projectLayout/Hero"
+import ProjectNavigation from "@/components/projectLayout/ProjectNavigation"
 import InnerProjectVideosDisplay from "@/components/projectLayout/InnerProjectVideoDisplay"
+
 import { getProjectInformation } from "@/lib/api"
 
 export default async function InnerProjectSlugPage({
@@ -19,14 +21,16 @@ export default async function InnerProjectSlugPage({
     <div className="flex flex-col items-center justify-between gap-8 bg-[#EFF2F5]">
         <HeroSection />
 
-            {innerProjectData && (
-                <div className="w-full h-auto max-w-[1389px] flex flex-col gap-4 items-start justify-center">
-                    <p className="text-[20px] font-bold">{innerProjectData.title}</p>
-                    <p>Description: {innerProjectData.description}</p>
-                </div>
-            )}
+        <ProjectNavigation />
 
-      <InnerProjectVideosDisplay />
+        {innerProjectData && (
+            <div className="w-full h-auto max-w-[1389px] flex flex-col gap-4 items-start justify-center">
+                <p className="text-[20px] font-bold">{innerProjectData.title}</p>
+                <p>Description: {innerProjectData.description}</p>
+            </div>
+        )}
+
+        <InnerProjectVideosDisplay />
     </div>
   )
 }

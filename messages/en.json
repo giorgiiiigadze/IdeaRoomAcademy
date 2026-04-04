@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "main": "Main",
+    "works": "Works",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "academy": "Academy"
+  },
+  "hero": {
+    "title": "აქ რაღაცა იქნება"
+  },
+  "landing": {
+    "about_title": "About",
+    "about_subtitle": "We build meaningful long-term partnerships and deliver the best experience of digital services across the world",
+    "work_title": "See our work in action",
+    "work_button": "View Collections",
+    "work_hint": "Find inspiration for your projects",
+    "blog_title": "Blog",
+    "blog_subtitle": "We build meaningful long-term partnerships and deliver the best experience of digital services across the world",
+    "blog_button": "View All",
+    "cta_title": "Start Growing Your Business Today",
+    "cta_button": "Let's Talk"
+  },
+  "brands": {
+    "title": "Trusted by current and soon to be world-class brands"
+  },
+  "services": {
+    "title": "Our Services"
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "We Strive To Create A Painless Client Experience."
+  },
+  "academy": {
+    "title": "Academy of Idearoom",
+    "description": "loren ipsum loren ipsum loren ipsum loren ipsumloren ipsum loren ipsumloren ipsum loren ipsum...",
+    "button": "Explore Our Academy"
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "We build meaningful long-term partnerships and deliver the best experience of digital services across the world"
+  },
+  "work": {
+    "title": "See our work in action",
+    "empty": "No works found."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Get Interesting stories about people, projects, and career opportunities directly to your mailbox",
+    "view_all": "View All"
+  },
+  "cta": {
+    "title": "Start Growing Your Business Today",
+    "button": "Let's Talk"
+  },
+  "project_nav": {
+    "video_editing": "Video Editing",
+    "branding": "Branding",
+    "social_media": "Social Media",
+    "web_development": "Web Development",
+    "uiux": "UI/UX Design",
+    "motion_design": "Motion Design"
+  },
+  "footer": {
+    "about": "About Us 1B1B1B About Us 1B1B1BAbout Us 1B1B1B 1B1B1BAbout Us1B1B1BAbout Us1B1B1BAbout Us 1B1B1BAbout Us1B1B1BAbout Us 1B1B1BAbout Us1B1B1BAbout Us1B1B1BAbout Us 1B1B1BAbout Us",
+    "services_title": "Services",
+    "services_web": "Web Development",
+    "services_graphic": "Graphic Designer",
+    "services_uiux": "UI/UX Designer",
+    "services_motion": "Motion Designer",
+    "services_video": "Video Editing",
+    "company_title": "Company",
+    "company_about": "About Us",
+    "company_academy": "Idearoom Academy",
+    "company_privacy": "Privacy Policy",
+    "company_blog": "Blog",
+    "contact_title": "Contact",
+    "copyright": "© 2026 Copyright Idearoom. All rights reserved."
+  },
+  "contact": {
+    "phone_label": "Phone Number",
+    "email_label": "Email Address",
+    "location_label": "Location",
+    "name_placeholder": "Name",
+    "email_placeholder": "E-MAIL",
+    "message_placeholder": "Text here...",
+    "send_button": "Send"
+  }
+}

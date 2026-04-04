@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server"
 import ServiceCard from "./serviceCard"
 
 const services = [
@@ -39,12 +40,16 @@ const services = [
   },
 ]
 
-export default function ServicesDisplay() {
+export default async function ServicesDisplay() {
+
+  const t = await getTranslations("services")
+
+
   return (
     <section className="w-full bg-[#EFF2F5] flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <main className="w-full max-w-[1389px] flex flex-col items-center gap-10 py-20">
         <h3 className="text-[16px] font-bold tracking-[0.2em] uppercase text-[#8471D9]">
-          Our Services
+          {t("title")}
         </h3>
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

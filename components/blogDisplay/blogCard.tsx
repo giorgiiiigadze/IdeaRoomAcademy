@@ -8,7 +8,6 @@ import { usePageTransition } from "@/hooks/usePageTransition"
 interface BlogCardProps {
   title: string
   description: string
-  category: string
   slug: string
   image: string
 }
@@ -16,7 +15,6 @@ interface BlogCardProps {
 export default function BlogCard({
   title,
   description,
-  category,
   slug,
   image,
 }: BlogCardProps) {
@@ -37,14 +35,6 @@ export default function BlogCard({
             className="object-cover rounded-2xl"
           />
 
-          <span
-            className="absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1 rounded-full"
-            style={{
-              background: "linear-gradient(to right, #7B2FBE, #F5A623)",
-            }}
-          >
-            {category}
-          </span>
         </div>
 
         <h3 className="text-[17px] font-bold text-brand-purple-5 leading-snug">

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import SeeAll from "@/components/ui/seeAll";
@@ -12,6 +11,7 @@ import ClientResponse from "@/components/clientResponse/clientDisplay";
 import AboutDisplay from "@/components/aboutSection/aboutDisplay";
 import BlogDisplay from "@/components/blogDisplay/blogDisplay";
 import LandingImageDisplay from "@/components/landingImageDisplay/ImageDisplay";
+import CTASection from "@/components/CTAsection/CTAsection";
 
 export default async function Home() {
   return (
@@ -29,39 +29,21 @@ export default async function Home() {
 
         <LandingImageDisplay />
 
-        <AboutDisplay mainText={"About"} secondaryText={"We build meaningful long-term partnerships and deliver the best experience of digital services across the world"}/>
+        <AboutDisplay/>
 
         <MapDisplay />
 
         <div className="w-full max-w-[1389px] flex flex-col items-center gap-8 px-4">
-          <WorkInAction count={4} text="See our work in action"/>
+          <WorkInAction count={4} />
           <SeeAll href="/works" label="View Collections" hint="Find inspiration for your projects" />
         </div>
         
         <div className="flex flex-col items-center bg-[#EFF2F5] w-full py-10">
-          <BlogDisplay count={3} mainText="Blog" secondaryText={"We build meaningful long-term partnerships and deliver the best experience of digital services across the world"}/>
+          <BlogDisplay count={3} />
           <Link href={"/blogs"} className="px-5 py-2.5 text-medium rounded-xl bg-[#FBA834] hover:opacity-90 text-white">View All</Link>
         </div>
 
-        <section className="h-[120px] w-[1376px] flex items-center bg-[#EFF2F5] justify-between gap-6 mb-12 rounded-[20px] px-10">
-
-          <div className="bg-[#552583] w-[80px] h-[80px] flex items-center justify-center rounded-full">
-            <Image
-              src="/logo-vector.png"
-              width={40}
-              height={40}
-              alt="Picture of the author"
-            />
-          </div>
-
-          <span className="text-[32px] text-brand-purple-4">Start Growing Your Business Today</span>
-
-          <button className="p-3.5 cursor-pointer px-6 rounded-3xl text-white font-bold" style={{
-            background: "linear-gradient(to right, #7B2FBE, #F5A623)"
-            }}>Let&apos;s Talk
-          </button>
-
-        </section>
+        <CTASection />
 
       </main>
 

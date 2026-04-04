@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server"
 import BlogCard from "./blogCard"
 import { getBlogs } from "@/lib/api"
 
@@ -5,19 +6,16 @@ interface Blog {
   id: number
   title: string
   description: string
-  category: string
   slug: string
   image: string
 }
 
 interface BlogDisplayProps {
   count?: number
-  showViewAll?: boolean
-  mainText: string
-  secondaryText: string
 }
 
-export default async function BlogDisplay({ count, mainText, secondaryText }: BlogDisplayProps) {
+export default async function BlogDisplay({ count }: BlogDisplayProps) {
+  const t = await getTranslations("blog")
   const blogs: Blog[] = await getBlogs()
 
   const featuredBlogs = count ? blogs.slice(0, count) : blogs
@@ -26,11 +24,11 @@ export default async function BlogDisplay({ count, mainText, secondaryText }: Bl
     <div className="w-full py-8 flex flex-col items-center gap-10">
       <div className="flex flex-col">
         <h1 className="text-2xl sm:text-[32px] font-bold text-brand-orange-5 text-center">
-          {mainText}
+          {t("title")}
         </h1>
 
         <span className="text-lg sm:text-[20px] font-light text-brand-purple-6 text-center max-w-[700px]">
-          {secondaryText}
+          {t("subtitle")}
         </span>
       </div>
 
@@ -40,13 +38,11 @@ export default async function BlogDisplay({ count, mainText, secondaryText }: Bl
             key={blog.id}
             title={blog.title}
             description={blog.description}
-            category={blog.category}
             slug={blog.slug}
             image={blog.image}
           />
         ))}
       </div>
-
     </div>
   )
 }

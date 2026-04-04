@@ -4,25 +4,26 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
-
-const servicesLinks = [
-  { label: "Video Editing", href: "/projects/video-editing" },
-  { label: "Branding", href: "/projects/branding" },
-  { label: "Social Media", href: "/projects/social-media" },
-  { label: "Web Development", href: "/projects/web-development" },
-  { label: "UI/UX Design", href: "#" },
-  { label: "Motion Design", href: "/projects/motion-design" },
-]
+import { useTranslations } from "next-intl"
 
 export default function ProjectNavigation() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const t = useTranslations("project_nav")
+
+  const servicesLinks = [
+    { label: t("video_editing"), href: "/projects/video-editing" },
+    { label: t("branding"), href: "/projects/branding" },
+    { label: t("social_media"), href: "/projects/social-media" },
+    { label: t("web_development"), href: "/projects/web-development" },
+    { label: t("uiux"), href: "#" },
+    { label: t("motion_design"), href: "/projects/motion-design" },
+  ]
 
   const activeLink = servicesLinks.find((l) => l.href === pathname) ?? servicesLinks[0]
 
   return (
     <div className="w-full flex items-center justify-center px-4">
-
       <div className="relative w-full max-w-sm lg:hidden">
         <button
           onClick={() => setOpen((o) => !o)}
@@ -37,7 +38,7 @@ export default function ProjectNavigation() {
             {servicesLinks.map((l) => {
               const isActive = pathname === l.href
               return (
-                <li key={l.label}>
+                <li key={l.href}>
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
@@ -59,7 +60,7 @@ export default function ProjectNavigation() {
           {servicesLinks.map((l) => {
             const isActive = pathname === l.href
             return (
-              <li key={l.label}>
+              <li key={l.href}>
                 <Link
                   href={l.href}
                   className={`block px-6 py-4 text-sm font-medium whitespace-nowrap transition-colors duration-200 rounded-full
@@ -73,7 +74,6 @@ export default function ProjectNavigation() {
           })}
         </ul>
       </nav>
-
     </div>
   )
 }

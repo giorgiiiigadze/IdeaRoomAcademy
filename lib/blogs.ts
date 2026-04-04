@@ -4,7 +4,6 @@ export type Blog = {
   slug: string
   description: string
   image: string
-  category: string
   author: string
   date: string
 }
@@ -16,7 +15,6 @@ const blogs: Blog[] = [
     slug: "future-of-ai-and-robotics",
     description: "ხელოვნური ინტელექტი და რობოტები, ისინი ერთად ქმნიან ჩვენს წარმატებას და COVID-19 ამის ნათელი მაგალით იყო",
     image: "/test-image.png",
-    category: "AI",
     author: "John Doe",
     date: "2024-03-15",
   },
@@ -26,7 +24,6 @@ const blogs: Blog[] = [
     slug: "web-development-trends-2024",
     description: "ხელოვნური ინტელექტი და რობოტები, ისინი ერთად ქმნიან ჩვენს წარმატებას და COVID-19 ამის ნათელი მაგალით იყო",
     image: "/test-image.png",
-    category: "Web Dev",
     author: "Alex Johnson",
     date: "2024-03-05",
   },
@@ -36,7 +33,6 @@ const blogs: Blog[] = [
     slug: "branding-digital-age",
     description: "ხელოვნური ინტელექტი და რობოტები, ისინი ერთად ქმნიან ჩვენს წარმატებას და COVID-19 ამის ნათელი მაგალით იყო",
     image: "/test-image.png",
-    category: "Branding",
     author: "Sarah Lee",
     date: "2024-02-28",
   },
@@ -46,7 +42,6 @@ const blogs: Blog[] = [
     slug: "motion-design-storytelling",
     description: "Motion design has become one of the most powerful tools for brands to communicate complex ideas in a simple and engaging way.",
     image: "/test-image.png",
-    category: "Motion Design",
     author: "Mike Brown",
     date: "2024-02-20",
   },
@@ -56,7 +51,6 @@ const blogs: Blog[] = [
     slug: "social-media-strategy-2024",
     description: "Learn how to craft a winning social media strategy that drives engagement, builds community, and grows your brand.",
     image: "/test-image.png",
-    category: "Social Media",
     author: "Emily Davis",
     date: "2024-02-15",
   },
