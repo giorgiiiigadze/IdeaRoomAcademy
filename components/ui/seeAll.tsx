@@ -3,7 +3,7 @@
 import { ArrowRight } from "lucide-react"
 import { useRef } from "react"
 import gsap from "gsap"
-import { usePageTransition } from "@/hooks/usePageTransition"
+import { useRouter } from "next/navigation"
 
 interface SeeAllProps {
   href: string
@@ -12,7 +12,7 @@ interface SeeAllProps {
 }
 
 export default function SeeAll({ href, label = "See all", hint }: SeeAllProps) {
-  const { navigate } = usePageTransition()
+  const router = useRouter()
   const underlineRef = useRef<HTMLSpanElement>(null)
 
   const handleMouseEnter = () => {
@@ -40,7 +40,7 @@ export default function SeeAll({ href, label = "See all", hint }: SeeAllProps) {
       {hint && <ArrowRight size={14} className="text-muted-foreground hidden sm:block" />}
 
       <button
-        onClick={() => navigate(href)}
+        onClick={() => router.push(href)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         className="relative flex items-center gap-2 text-foreground font-bold text-sm sm:text-base cursor-pointer"

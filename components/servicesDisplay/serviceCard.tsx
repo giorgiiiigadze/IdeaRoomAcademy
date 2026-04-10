@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { usePageTransition } from "@/hooks/usePageTransition"
+import { useRouter } from "next/navigation"
 
 interface ServiceItemProps {
   label: string
@@ -11,7 +11,7 @@ interface ServiceItemProps {
 }
 
 export default function ServiceCard({ label, description, icon, href }: ServiceItemProps) {
-  const { navigate } = usePageTransition()
+  const router = useRouter()
 
   return (
     <div className="rounded-2xl p-8 flex flex-col gap-6 bg-white">
@@ -23,7 +23,7 @@ export default function ServiceCard({ label, description, icon, href }: ServiceI
       </div>
 
       <button
-        onClick={() => navigate(href)}
+        onClick={() => router.push(href)}
         className="mt-auto w-fit flex items-center cursor-pointer gap-2 bg-brand-orange-5 text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:opacity-90 transition-opacity"
       >
         Learn More

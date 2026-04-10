@@ -21,7 +21,6 @@ export default async function BlogSlugPage({ params }: { params: { blogSlug: str
           title={blog.title}
           description={blog.description}
           image={blog.image}
-          badge="Blog Article"
           showReadFull 
         />
 

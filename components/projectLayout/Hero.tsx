@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { ArrowBigRight } from "lucide-react"
-import { useCallback, useState } from "react"
+import { useState } from "react"
 
 interface HeroSectionProps {
   title?: string
@@ -12,8 +12,19 @@ interface HeroSectionProps {
   buttonText?: string
   buttonUrl?: string
   image?: string
-  badge?: string
   showReadFull?: boolean
+}
+
+function Spinner() {
+  return (
+    <div
+      aria-label="Loading image"
+      role="status"
+      className="absolute inset-0 flex items-center justify-center"
+    >
+      <div className="w-10 h-10 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+    </div>
+  )
 }
 
 export default function HeroSection({
@@ -22,19 +33,18 @@ export default function HeroSection({
   buttonText,
   buttonUrl,
   image,
-  badge,
   showReadFull,
 }: HeroSectionProps) {
-  const [imageLoaded, setImageLoaded] = useState(false)
+  const [imageStatus, setImageStatus] = useState<"loading" | "loaded" | "error">("loading")
 
-  const handleScroll = useCallback(() => {
+  const scrollToFullBlog = () => {
     document.getElementById("full-blog")?.scrollIntoView({ behavior: "smooth" })
-  }, [])
+  }
 
   const hasContent = title || description || (buttonText && buttonUrl)
 
   return (
-    <div
+    <section
       className="relative w-full h-auto flex items-center justify-center overflow-hidden pt-[14px] bg-neutral-900 bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/project-images/main-bg-image.jpg')" }}
     >
@@ -42,12 +52,6 @@ export default function HeroSection({
 
         {hasContent && (
           <div className="flex items-center lg:items-start flex-col w-full lg:w-[480px] gap-6">
-
-            {badge && (
-              <span className="text-xs font-bold uppercase tracking-widest text-brand-orange-5 border border-brand-orange-5/40 bg-brand-orange-5/10 px-3 py-1 rounded-full">
-                {badge}
-              </span>
-            )}
 
             {title && (
               <h1 className="text-3xl lg:text-[40px] font-bold leading-tight text-brand-orange-6 text-center lg:text-left">
@@ -62,11 +66,12 @@ export default function HeroSection({
                 </p>
                 {showReadFull && (
                   <button
-                    onClick={handleScroll}
+                    onClick={scrollToFullBlog}
                     aria-label="Scroll to full blog post"
                     className="flex items-center gap-1 text-brand-orange-5 text-sm font-bold hover:gap-2 transition-all duration-200 cursor-pointer"
                   >
                     Read Full
+                    <ArrowBigRight className="w-4 h-4" />
                   </button>
                 )}
               </div>
@@ -88,29 +93,29 @@ export default function HeroSection({
 
         {image && (
           <div className="relative w-full lg:w-[700px] h-[300px] lg:h-[600px] shrink-0 flex items-center justify-center">
-            {!imageLoaded && (
-              <div
-                aria-label="Loading image"
-                role="status"
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <div className="w-10 h-10 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+            {imageStatus === "loading" && <Spinner />}
+
+            {imageStatus === "error" ? (
+              <div className="flex items-center justify-center w-full h-full text-white/40 text-sm">
+                Failed to load image
               </div>
+            ) : (
+              <Image
+                src={image}
+                alt={title ?? "Hero image"}
+                fill
+                priority
+                onLoad={() => setImageStatus("loaded")}
+                onError={() => setImageStatus("error")}
+                className={`object-contain object-center mt-4 transition-opacity duration-500 ${
+                  imageStatus === "loaded" ? "opacity-100" : "opacity-0"
+                }`}
+              />
             )}
-            <Image
-              src={image}
-              alt={title ?? "Hero image"}
-              fill
-              priority
-              onLoadingComplete={() => setImageLoaded(true)}
-              className={`object-contain object-center transition-opacity mt-4 duration-500 ${
-                imageLoaded ? "opacity-100" : "opacity-0"
-              }`}
-            />
           </div>
         )}
 
       </main>
-    </div>
+    </section>
   )
 }

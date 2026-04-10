@@ -2,23 +2,39 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ChevronDown } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { createClient } from "@/lib/supabase/client"
+
+type ServiceLink = {
+  label: string
+  href: string
+}
 
 export default function ProjectNavigation() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
-  const t = useTranslations("project_nav")
+  const [servicesLinks, setServicesLinks] = useState<ServiceLink[]>([])
 
-  const servicesLinks = [
-    { label: t("video_editing"), href: "/projects/video-editing" },
-    { label: t("branding"), href: "/projects/branding" },
-    { label: t("social_media"), href: "/projects/social-media" },
-    { label: t("web_development"), href: "/projects/web-development" },
-    { label: t("uiux"), href: "#" },
-    { label: t("motion_design"), href: "/projects/motion-design" },
-  ]
+  useEffect(() => {
+    async function fetchServices() {
+      const supabase = createClient()
+      const { data } = await supabase
+        .from("services")
+        .select("title, slug")
+        .eq("is_active", true)
+
+      if (data) {
+        setServicesLinks(
+          data.map((s) => ({
+            label: s.title,
+            href: `/projects/${s.slug}`,
+          }))
+        )
+      }
+    }
+    fetchServices()
+  }, [])
 
   const activeLink = servicesLinks.find((l) => l.href === pathname) ?? servicesLinks[0]
 
@@ -29,7 +45,7 @@ export default function ProjectNavigation() {
           onClick={() => setOpen((o) => !o)}
           className="w-full flex items-center justify-between px-5 py-3 rounded-full outline text-sm font-medium"
         >
-          {activeLink.label}
+          {activeLink?.label}
           <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
         </button>
 
@@ -55,7 +71,7 @@ export default function ProjectNavigation() {
         )}
       </div>
 
-      <nav className="hidden lg:flex items-center outline rounded-full p-2">
+      <nav className="lg:flex items-center flex items-center justify-center rounded-full w-full max-w-[1389px] p-4 bg-white">
         <ul className="flex items-center">
           {servicesLinks.map((l) => {
             const isActive = pathname === l.href
@@ -63,8 +79,8 @@ export default function ProjectNavigation() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className={`block px-6 py-4 text-sm font-medium whitespace-nowrap transition-colors duration-200 rounded-full
-                    ${isActive ? "bg-white text-foreground" : "text-muted-foreground hover:text-foreground"}
+                  className={`block px-6 py-4 text-sm font-bold whitespace-nowrap transition-colors duration-200 rounded-full
+                    ${isActive ? "bg-[#EFF2F5] text-foreground" : ""}
                   `}
                 >
                   {l.label}

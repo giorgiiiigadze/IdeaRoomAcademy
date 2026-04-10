@@ -2,21 +2,21 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { ChevronDown } from "lucide-react"
 import gsap from "gsap"
 import { useTranslations } from "next-intl"
 
 import LanguageToggle from "../LanguageToggle"
 
-const servicesLinks = [
-  { label: "Web Development", href: "/projects/web-development", description: "Inspiring web development.", icon: "/header-icons/header-icon-test.svg" },
-  { label: "UI/UX Design", href: "projects/ui-ux-design", description: "Inspiring web & mobile app Design.", icon: "/header-icons/header-icon-test.svg" },
-  { label: "Branding", href: "/projects/branding", description: "Dazzling end-to-end brand identity creation.", icon: "/header-icons/header-icon-test.svg" },
-  { label: "Social Media", href: "/projects/social-media", description: "Engaging social media management.", icon: "/header-icons/header-icon-test.svg" },
-  { label: "Video Editing", href: "/projects/video-editing", description: "Create video your business needs.", icon: "/header-icons/header-icon-test.svg" },
-  { label: "Motion Design", href: "/projects/motion-design", description: "Dazzling end-to-end brand identity creation.", icon: "/header-icons/header-icon-test.svg" },
-]
+import { createClient } from "@/lib/supabase/client"
+
+type ServiceLink = {
+  label: string
+  href: string
+  description?: string
+  icon?: string
+}
 
 const worksLinks = [
   { label: "NovaBank Platform", href: "/project/nova-bank", description: "A modern fintech platform built for seamless digital banking.", icon: "/header-icons/header-icon-test.svg" },
@@ -69,7 +69,7 @@ function DropdownMenu({ label, links }: {
                     {l.label}
                   </span>
                   {l.description && (
-                    <span className="text-gray-400 text-xs mt-0.5 leading-snug">
+                    <span className="text-gray-400 text-xs mt-0.5 leading-snug line-clamp-1">
                       {l.description}
                     </span>
                   )}
@@ -98,20 +98,43 @@ function AcademyButton({ label }: { label: string }) {
   }
 
   return (
-    <button
+    <a
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className="relative overflow-hidden cursor-pointer px-6 py-2.5 rounded-full bg-brand-orange-5 text-brand-purple-5 font-bold"
+      href="https://academy.idearoom.ge"
     >
       <span ref={defaultTextRef} className="block">{label}</span>
       <span ref={hoverTextRef} className="absolute inset-0 flex items-center justify-center opacity-0">{label}</span>
-    </button>
+    </a>
   )
 }
 
 export default function Header() {
   const t = useTranslations("nav")
 
+  const [servicesLinks, setServicesLinks] = useState<ServiceLink[]>([])
+
+  useEffect(() => {
+    async function fetchServices() {
+      const supabase = createClient()
+      const { data } = await supabase.from("services").select("*")
+      if (data) {
+        setServicesLinks(
+          data.map((s) => ({
+            label: s.title,
+            href: `/projects/${s.slug}`,
+            description: s.description,
+            icon: s.icon ?? "/header-icons/header-icon-test.svg",
+          }))
+        )
+      }
+    }
+    fetchServices()
+  }, [])
+
+  console.log(servicesLinks)
+  
   return (
     <header className="w-full absolute top-0 left-0 right-0 z-50 px-4 lg:px-8">
       <div className="w-full max-w-[1389px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between mt-2 backdrop-blur-md rounded-2xl">

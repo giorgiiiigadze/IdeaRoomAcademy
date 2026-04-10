@@ -51,21 +51,15 @@ export default function ClientResponseCarousel({
         opts={{ align: "start", loop: true, slidesToScroll: 3 }}
         className="w-full px-12"
       >
-        <CarouselContent className="-ml-4">
-          {testimonials.map((testimonial) => (
-            <CarouselItem
-              key={testimonial.id}
-              className="pl-4 md:basis-1/3"
-            >
-              <ClientResponseCard
-                text={testimonial.text}
-                name={testimonial.name}
-                title={testimonial.title}
-                image={testimonial.image}
-              />
+      <CarouselContent className="-ml-4">
+        {testimonials
+          .filter((t) => t.is_active !== false)
+          .map((testimonial) => (
+            <CarouselItem key={testimonial.id.toString()} className="pl-4 md:basis-1/3">
+              <ClientResponseCard data={testimonial} />
             </CarouselItem>
           ))}
-        </CarouselContent>
+      </CarouselContent>
 
         <CarouselPrevious/>
         <CarouselNext/>

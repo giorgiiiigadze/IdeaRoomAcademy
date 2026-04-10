@@ -1,8 +1,19 @@
 import { getTranslations } from "next-intl/server"
 import AboutVideoDialog from "./aboutVideoDialog"
+import { createClient } from "@/lib/supabase/server"
 
 export default async function AboutDisplay() {
   const t = await getTranslations("about")
+  const supabase = await createClient()
+
+  const { data: aboutUs } = await supabase
+    .from("about_us")
+    .select("video_url")
+    .single()
+
+  const videoPublicUrl = aboutUs?.video_url
+    ? supabase.storage.from("about-images").getPublicUrl(aboutUs.video_url).data.publicUrl
+    : null
 
   return (
     <div className="w-full max-w-[1389px] flex flex-col items-center gap-4 mt-8 mb-20">
@@ -15,10 +26,13 @@ export default async function AboutDisplay() {
       </span>
 
       <div className="w-full h-[718px] flex items-center justify-center mt-6">
-        <AboutVideoDialog
-          videoUrl="/videos/test-video.mp4"
-          thumbnail="/about-images/about-us-test-image.png"
-        />
+        {videoPublicUrl ? (
+          <AboutVideoDialog videoUrl={videoPublicUrl} />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
+            No video available.
+          </div>
+        )}
       </div>
     </div>
   )

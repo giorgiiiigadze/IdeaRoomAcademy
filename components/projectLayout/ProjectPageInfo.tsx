@@ -26,7 +26,7 @@ export default function ProjectPageInformation({
         return (
           <div
             key={project.id}
-            className={`h-full w-full rounded-[24px] bg-white p-4 flex flex-wrap gap-20 ${isEven ? "" : "flex-row-reverse"}`}
+            className={`h-full w-full rounded-[24px] bg-white p-8 flex flex-wrap gap-20 ${isEven ? "" : "flex-row-reverse"}`}
           >
             <div className="flex flex-col items-start justify-between gap-6 flex-1 min-w-[280px]">
               <h1 className="text-[24px] font-semibold">{project.title}</h1>

@@ -4,6 +4,9 @@ import FooterColumn from "./FooterColumn"
 import { FaFacebook, FaYoutube, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa"
 import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md"
 
+import { createClient } from "@/lib/supabase/server"
+import { getContactData } from "@/lib/actions/contact"
+
 const socialLinks = [
   { icon: FaFacebook,  href: "#", label: "Facebook" },
   { icon: FaYoutube,   href: "#", label: "YouTube" },
@@ -12,15 +15,25 @@ const socialLinks = [
   { icon: FaLinkedin,  href: "#", label: "LinkedIn" },
 ]
 
-const contactInfo = [
-  { icon: MdPhone,      text: "+995 555 25 14 36" },
-  { icon: MdEmail,      text: "Idearoom@gmail.com" },
-  { icon: MdLocationOn, text: "Kutaisi, Georgia Kostava st #38" },
-]
-
 export default async function Footer() {
   const t = await getTranslations("footer")
+  const supabase = await createClient()
 
+  const contactData = await getContactData()
+
+  const contactInfo = contactData
+    ? [
+        { icon: MdPhone, text: contactData.phone_number },
+        { icon: MdEmail, text: contactData.academy_email },
+        { icon: MdLocationOn, text: contactData.academy_adress },
+      ]
+    : []
+
+  const { data: aboutUsData } = await supabase
+    .from("about_us")
+    .select("*")
+    .single()
+    
   return (
     <footer className="w-full flex flex-col items-center bg-footer-dark border-t-8 border-brand-orange-5 mt-auto">
 
@@ -28,7 +41,8 @@ export default async function Footer() {
 
         <div className="flex flex-col gap-3">
           <Image src="/logo.svg" alt="Idearoom logo" width={100} height={54} priority />
-          <p className="text-[#CACACA] text-sm leading-relaxed">{t("about")}</p>
+          <p className="text-[#CACACA] text-sm leading-relaxed">{aboutUsData.description}</p>
+
           <div className="flex gap-2 mt-2">
             {socialLinks.map(({ icon: Icon, href, label }) => (
               <a
@@ -65,9 +79,12 @@ export default async function Footer() {
         />
 
         <div className="flex flex-col gap-3">
-          <h4 className="text-white font-semibold text-base mb-2">{t("contact_title")}</h4>
-          {contactInfo.map(({ icon: Icon, text }) => (
-            <div key={text} className="flex items-center gap-3 text-[#CACACA] text-sm">
+          <h4 className="text-white font-semibold text-base mb-2">
+            {t("contact_title")}
+          </h4>
+
+          {contactInfo.map(({ icon: Icon, text }, index) => (
+            <div key={index} className="flex items-center gap-3 text-[#CACACA] text-sm">
               <div className="w-9 h-9 rounded-full bg-white shrink-0 flex items-center justify-center">
                 <Icon size={16} color="#552583" />
               </div>

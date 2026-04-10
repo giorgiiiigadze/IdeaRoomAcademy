@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 import { NextIntlClientProvider } from "next-intl"
 import { getLocale, getMessages } from "next-intl/server"
+import { Toaster } from "sonner";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -56,6 +57,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             <Header />
             <main className="w-full">
               {children}
+              <Toaster richColors position="top-right" />
             </main>
             <Footer />
           </NextIntlClientProvider>

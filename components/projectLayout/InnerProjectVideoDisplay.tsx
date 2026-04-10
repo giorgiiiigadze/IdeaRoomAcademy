@@ -64,7 +64,6 @@ function VideoCard({ video, onClick }: { video: VideoItem; onClick: () => void }
 }
 
 export default function InnerProjectVideosDisplay({
-  title = "Youtube Projects",
   videos = mockVideos,
 }: InnerProjectVideosDisplayProps) {
   const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null)
@@ -75,10 +74,6 @@ export default function InnerProjectVideosDisplay({
 
   return (
     <div className="w-full py-8 max-w-[1389px] mx-auto">
-      {title && (
-        <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">{title}</h2>
-      )}
-
       {portrait.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-4">
           {videos.map((video) => (

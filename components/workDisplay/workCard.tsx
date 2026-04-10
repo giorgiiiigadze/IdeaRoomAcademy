@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { usePageTransition } from "@/hooks/usePageTransition"
+import { useRouter } from "next/navigation"
 
 interface WorkCardProps {
   image: string
@@ -11,11 +11,11 @@ interface WorkCardProps {
 }
 
 export default function WorkCard({ image, title, category, href = "#" }: WorkCardProps) {
-  const { navigate } = usePageTransition()
+  const router = useRouter()
 
   return (
     <div
-      onClick={() => navigate(href)}
+      onClick={() => router.push(href)}
       className="relative w-full h-[280px] sm:h-[380px] rounded-2xl overflow-hidden cursor-pointer"
     >
       <Image
