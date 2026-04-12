@@ -23,12 +23,13 @@ export default function ClientResponseCard({ data }: ClientResponseCardProps) {
       <div className="flex items-center gap-3">
         <div className="relative w-[52px] h-[52px] rounded-full overflow-hidden shrink-0">
           
-          <Image
-            src={data.avatar_url}
-            alt={data.name}
-            fill
-            className="object-cover"
-          />
+        <Image
+          src={data.avatar_url}
+          alt={data.name}
+          fill
+          sizes="52px"
+          className="object-cover"
+        />
 
         </div>
 

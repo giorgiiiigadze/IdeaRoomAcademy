@@ -2,12 +2,16 @@ import { getTranslations } from "next-intl/server"
 import BlogCard from "./blogCard"
 import { getBlogs } from "@/lib/api"
 
-interface Blog {
-  id: number
+export type Blog = {
+  id: string
   title: string
-  description: string
   slug: string
-  image: string
+  author: string
+  cover_image_url: string | null
+  content: string
+  is_published: boolean
+  published_at: string
+  created_at: string
 }
 
 interface BlogDisplayProps {
@@ -32,14 +36,11 @@ export default async function BlogDisplay({ count }: BlogDisplayProps) {
         </span>
       </div>
 
-      <div className="flex items-start max-w-[1389px] gap-2">
+      <div className="flex items-start gap-2">
         {featuredBlogs.map((blog) => (
           <BlogCard
             key={blog.id}
-            title={blog.title}
-            description={blog.description}
-            slug={blog.slug}
-            image={blog.image}
+            blog={blog}
           />
         ))}
       </div>

@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone } from "lucide-react"
 import ContactForm from "@/components/ContactForm"
 
 import { getContactData } from "@/lib/actions/contact"
+import HeroSection from "@/components/projectLayout/Hero"
 
 export default async function ContactsPage() {
   const t = await getTranslations("contact")
@@ -12,15 +13,7 @@ export default async function ContactsPage() {
   return (
     <div className="flex flex-col items-center gap-6 mb-6">
 
-      <section
-        className="h-[826px] w-full"
-        style={{
-          backgroundImage: "url('/contact-page-bg.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
+      <HeroSection/>
 
       <div className="flex items-center justify-between gap-6 w-full max-w-[1389px] h-[428px] rounded-2xl">
 

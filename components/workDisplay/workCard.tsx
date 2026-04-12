@@ -18,13 +18,14 @@ export default function WorkCard({ image, title, category, href = "#" }: WorkCar
       onClick={() => router.push(href)}
       className="relative w-full h-[280px] sm:h-[380px] rounded-2xl overflow-hidden cursor-pointer"
     >
+      
       <Image
         src={image}
         alt={title}
         fill
+        sizes="(max-width: 640px) 100vw, 50vw"
         className="object-cover transition-transform duration-500 hover:scale-105"
       />
-
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
       <div className="absolute bottom-0 left-0 p-6 flex flex-col items-start gap-2">

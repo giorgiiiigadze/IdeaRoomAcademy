@@ -118,7 +118,7 @@ export default function Header() {
   useEffect(() => {
     async function fetchServices() {
       const supabase = createClient()
-      const { data } = await supabase.from("services").select("*")
+      const { data } = await supabase.from("services").select("*").eq("is_active", true)
       if (data) {
         setServicesLinks(
           data.map((s) => ({
@@ -132,14 +132,19 @@ export default function Header() {
     }
     fetchServices()
   }, [])
-
-  console.log(servicesLinks)
   
   return (
     <header className="w-full absolute top-0 left-0 right-0 z-50 px-4 lg:px-8">
       <div className="w-full max-w-[1389px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between mt-2 backdrop-blur-md rounded-2xl">
         <Link href="/">
-          <Image src="/logo.svg" alt="Idearoom logo" width={100} height={54} priority />
+          <Image
+            src="/logo.svg"
+            alt="Idearoom logo"
+            width={100}
+            height={54}
+            priority
+            style={{ width: "100px", height: "auto" }}
+          />        
         </Link>
 
         <div className="flex items-center gap-4">

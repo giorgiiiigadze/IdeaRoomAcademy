@@ -29,7 +29,7 @@ export default function AboutVideoDialog({ videoUrl }: VideoDialogProps) {
       {!playing && (
         <div
           onClick={handlePlayClick}
-          className="absolute inset-0 flex items-center justify-center cursor-pointer"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center cursor-pointer"
         >
           <div className="bg-[#FBA834] rounded-full p-4">
             <Play className="fill-[#552583] stroke-[#552583]" />

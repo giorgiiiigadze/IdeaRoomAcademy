@@ -6,6 +6,7 @@ import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md"
 
 import { createClient } from "@/lib/supabase/server"
 import { getContactData } from "@/lib/actions/contact"
+import { getServices } from "@/lib/services"
 
 const socialLinks = [
   { icon: FaFacebook,  href: "#", label: "Facebook" },
@@ -19,28 +20,41 @@ export default async function Footer() {
   const t = await getTranslations("footer")
   const supabase = await createClient()
 
+  
   const contactData = await getContactData()
-
   const contactInfo = contactData
     ? [
-        { icon: MdPhone, text: contactData.phone_number },
-        { icon: MdEmail, text: contactData.academy_email },
-        { icon: MdLocationOn, text: contactData.academy_adress },
-      ]
+      { icon: MdPhone, text: contactData.phone_number },
+      { icon: MdEmail, text: contactData.academy_email },
+      { icon: MdLocationOn, text: contactData.academy_adress },
+    ]
     : []
-
+    
   const { data: aboutUsData } = await supabase
     .from("about_us")
     .select("*")
     .single()
     
+  const servicesData = await getServices()
+  const serviceLinks = servicesData?.map((s) => ({
+    label: s.title,
+    href: `/projects/${s.slug}`,
+  })) ?? []
+
   return (
     <footer className="w-full flex flex-col items-center bg-footer-dark border-t-8 border-brand-orange-5 mt-auto">
 
       <main className="w-full max-w-[1392px] px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
         <div className="flex flex-col gap-3">
-          <Image src="/logo.svg" alt="Idearoom logo" width={100} height={54} priority />
+          <Image
+            src="/logo.svg"
+            alt="Idearoom logo"
+            width={100}
+            height={54}
+            priority
+            style={{ width: "100px", height: "auto" }}
+          />
           <p className="text-[#CACACA] text-sm leading-relaxed">{aboutUsData.description}</p>
 
           <div className="flex gap-2 mt-2">
@@ -59,22 +73,16 @@ export default async function Footer() {
 
         <FooterColumn
           label={t("services_title")}
-          links={[
-            { label: t("services_web"),     href: "#" },
-            { label: t("services_graphic"), href: "#" },
-            { label: t("services_uiux"),    href: "#" },
-            { label: t("services_motion"),  href: "#" },
-            { label: t("services_video"),   href: "#" },
-          ]}
+          links={serviceLinks}
         />
 
         <FooterColumn
           label={t("company_title")}
           links={[
-            { label: t("company_about"),    href: "/about" },
-            { label: t("company_academy"),  href: "#" },
-            { label: t("company_privacy"),  href: "#" },
-            { label: t("company_blog"),     href: "/blogs" },
+            { label: t("company_about"),   href: "/about" },
+            { label: t("company_academy"), href: "#" },
+            { label: t("company_privacy"), href: "#" },
+            { label: t("company_blog"),    href: "/blogs" },
           ]}
         />
 

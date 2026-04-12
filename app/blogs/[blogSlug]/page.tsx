@@ -2,7 +2,7 @@ import { getBlogs } from "@/lib/api"
 import { notFound } from "next/navigation"
 
 import HeroSection from "@/components/projectLayout/Hero"
-import BlogDisplay from "@/components/blogDisplay/blogDisplay"
+import BlogCard from "@/components/blogDisplay/blogCard"
 
 export default async function BlogSlugPage({ params }: { params: { blogSlug: string } }) {
   const { blogSlug } = await params
@@ -13,14 +13,14 @@ export default async function BlogSlugPage({ params }: { params: { blogSlug: str
   if (!blog) notFound()
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center font-sans">
+    <div className="flex flex-col flex-1 items-center justify-center font-sans bg-[#EFF2F5]">
 
       <main className="w-full flex items-center justify-around flex-col gap-6">
 
         <HeroSection
           title={blog.title}
-          description={blog.description}
-          image={blog.image}
+          description={blog.content}
+          image={blog.cover_image_url ?? undefined}
           showReadFull 
         />
 
@@ -33,7 +33,7 @@ export default async function BlogSlugPage({ params }: { params: { blogSlug: str
           <div className="flex items-center gap-3 text-sm text-gray-400">
             <span>·</span>
             <span>
-              {new Date(blog.date).toLocaleDateString("en-US", {
+              {new Date(blog.created_at).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -44,7 +44,7 @@ export default async function BlogSlugPage({ params }: { params: { blogSlug: str
           </div>
 
           <p className="leading-relaxed text-base">
-            {blog.description}
+            {blog.content}
           </p>
 
           <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
@@ -73,11 +73,16 @@ export default async function BlogSlugPage({ params }: { params: { blogSlug: str
             </a>
           </div>
 
-        </div>
+          </div>
 
-        <div className="w-full max-w-[1389px] flex flex-col items-center gap-8 py-10 px-4">
-          <BlogDisplay />
-        </div>
+          <div className="w-full max-w-[1389px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+              {blogs.map((blog) => (
+                  <BlogCard
+                      key={blog.id}
+                      blog={blog}
+                  />
+              ))}
+          </div>
 
       </main>
 

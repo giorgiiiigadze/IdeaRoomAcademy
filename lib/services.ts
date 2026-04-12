@@ -7,6 +7,7 @@ export type Service = {
   slug: string
   image: string
   status: string
+  is_active: boolean
 }
 
 export async function getServices(): Promise<Service[]> {
@@ -15,10 +16,23 @@ export async function getServices(): Promise<Service[]> {
   return data ?? []
 }
 
-export async function getServiceBySlug(slug: string): Promise<Service | null> {
+export async function getServiceBySlug(slug: string) {
   const supabase = await createClient()
   const { data } = await supabase
     .from("services")
+    .select(`
+      *,
+      projects(*)
+    `)
+    .eq("slug", slug)
+    .single()
+  return data ?? null
+}
+
+export async function getProjectBySlug(slug: string) {
+  const supabase = await createClient()
+  const { data } = await supabase
+    .from("projects")
     .select("*")
     .eq("slug", slug)
     .single()

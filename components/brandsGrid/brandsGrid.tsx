@@ -27,7 +27,7 @@ export default function BrandsGrid() {
           <div key={brand.name} className="flex-1 h-[142px] border border-gray-100 flex items-center justify-center gap-4 rounded-[13px]">
             <span>{brand.name}</span>
             <Image
-              src="/brand-icons/brand-icon-test.svg"
+              src="/logo-vector.png"
               width={34}
               height={34}
               alt={brand.name}

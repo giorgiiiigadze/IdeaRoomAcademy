@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin("./i18n.ts")
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
+      // Delete this later
       {
         protocol: "https",
         hostname: "images.unsplash.com",
