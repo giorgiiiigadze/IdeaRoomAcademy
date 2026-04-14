@@ -22,7 +22,7 @@ export default async function LandingImageDisplay() {
           </button>
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 bg-amber-400">
           <h1>Aq image iqneba</h1>
         </div>
       </main>

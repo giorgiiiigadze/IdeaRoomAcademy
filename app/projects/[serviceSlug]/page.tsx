@@ -1,5 +1,5 @@
 import HeroSection from "@/components/projectLayout/Hero"
-import ProjectNavigation from "@/components/projectLayout/ProjectNavigation"
+import ProjectNavigation from "@/components/projectLayout/ServiceNavigation"
 import ProjectPageInformation from "@/components/projectLayout/ProjectPageInfo"
 import { getServiceBySlug, getServices } from "@/lib/services"
 
@@ -25,7 +25,7 @@ export default async function ProjectSlugPage({ params }: { params: Promise<{ se
       <ProjectNavigation services={services} />
 
       {projects.length === 0 ? (
-        <div>No projects yet</div>
+        <div>No projects yet.</div>
       ) : (
         <ProjectPageInformation
           projectsInfo={projects}

@@ -34,9 +34,15 @@ export default async function ServicesDisplay() {
         </h3>
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
+          {services.length === 0 ? (
+            <p className="col-span-full text-center text-gray-400 text-sm py-10">
+              No services yet.
+            </p>
+          ) : (
+            services.map((service) => (
+              <ServiceCard key={service.id} service={service} />
+            ))
+          )}
         </div>
       </main>
     </section>

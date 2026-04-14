@@ -66,7 +66,7 @@ export default function ProjectNavigation({ services }: Props) {
         )}
       </div>
 
-      <nav className="hidden lg:flex items-center justify-center rounded-full w-full max-w-[1389px] p-4 bg-white">
+      <nav className="hidden lg:flex items-center justify-center rounded-full w-full max-w-[1389px] p-3 bg-white">
         <ul className="flex items-center flex-wrap justify-center gap-1">
           {servicesLinks.map((l) => {
             const isActive = pathname.startsWith(l.href)
@@ -74,7 +74,7 @@ export default function ProjectNavigation({ services }: Props) {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className={`block px-6 py-3 text-sm font-bold whitespace-nowrap transition-colors duration-200 rounded-full
+                  className={`block px-8 py-4 text-sm font-bold whitespace-nowrap transition-colors duration-200 rounded-full
                     ${isActive ? "bg-[#EFF2F5] text-foreground" : "hover:bg-[#EFF2F5]/50"}
                   `}
                 >

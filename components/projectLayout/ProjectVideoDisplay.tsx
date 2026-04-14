@@ -15,15 +15,6 @@ interface InnerProjectVideosDisplayProps {
   videos?: VideoItem[]
 }
 
-const mockVideos: VideoItem[] = [
-  { id: 1, url: "/videos/test-video.mp4", caption: 'Cafe "Papavero" Comercial video', type: "landscape" },
-  { id: 2, url: "/videos/test-video.mp4", caption: '"Burger King"', type: "landscape" },
-  { id: 3, url: "/videos/test-video.mp4", caption: '"Burger King"', type: "landscape" },
-  { id: 4, url: "/videos/test-video.mp4", caption: 'Cafe "Papavero" Comercial video', type: "landscape" },
-  { id: 5, url: "/videos/test-video.mp4", caption: "Gym Day", type: "landscape" },
-  { id: 6, url: "/videos/test-video.mp4", caption: "Breacfest day", type: "landscape" },
-]
-
 function VideoCard({ video, onClick }: { video: VideoItem; onClick: () => void }) {
   const isPortrait = video.type === "portrait"
 
@@ -63,8 +54,8 @@ function VideoCard({ video, onClick }: { video: VideoItem; onClick: () => void }
   )
 }
 
-export default function InnerProjectVideosDisplay({
-  videos = mockVideos,
+export default function ProjectVideosDisplay({
+  videos = [],
 }: InnerProjectVideosDisplayProps) {
   const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null)
   const isPortrait = activeVideo?.type === "portrait"
@@ -74,7 +65,11 @@ export default function InnerProjectVideosDisplay({
 
   return (
     <div className="w-full py-8 max-w-[1389px] mx-auto">
-      {portrait.length > 0 ? (
+      {videos.length === 0 ? (
+        <div className="flex items-center justify-center">
+          <p className="text-gray-400 text-sm py-10">No videos yet.</p>
+        </div>
+      ) : portrait.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-4">
           {videos.map((video) => (
             <VideoCard key={video.id} video={video} onClick={() => setActiveVideo(video)} />

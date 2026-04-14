@@ -1,8 +1,9 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
 import WorkCard from "./workCard"
-import { getWorks } from "@/lib/works"
+import { getWorks, type Work } from "@/lib/works"
 
 interface WorkInActionProps {
   count?: number
@@ -10,7 +11,11 @@ interface WorkInActionProps {
 
 export default function WorkInAction({ count }: WorkInActionProps) {
   const t = useTranslations("work")
-  const works = getWorks(count)
+  const [works, setWorks] = useState<Work[]>([])
+
+  useEffect(() => {
+    getWorks(count).then(setWorks)
+  }, [count])
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -22,11 +27,11 @@ export default function WorkInAction({ count }: WorkInActionProps) {
         {works.length > 0 ? (
           works.map((work) => (
             <WorkCard
-              key={work.href}
+              key={work.slug}
               image={work.image}
               title={work.title}
               category={work.category}
-              href={work.href}
+              href={`/works/${work.slug}`}
             />
           ))
         ) : (

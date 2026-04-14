@@ -43,7 +43,7 @@ export default function ServiceCard({
           {service.title}
         </h4>
 
-        <p className="text-sm text-gray-500 leading-relaxed">
+        <p className="text-sm text-gray-500 leading-relaxed break-words">
           {service.description}
         </p>
       </div>

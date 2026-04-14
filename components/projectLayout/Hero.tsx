@@ -92,7 +92,7 @@ export default function HeroSection({
         )}
 
         {image && (
-          <div className="relative w-full lg:w-[700px] h-[300px] lg:h-[600px] shrink-0 flex items-center justify-center">
+          <div className="relative w-full lg:w-[700px] h-[300px] lg:h-[500px] shrink-0 flex items-center justify-center overflow-hidden rounded-xl">
             {imageStatus === "loading" && <Spinner />}
 
             {imageStatus === "error" ? (
@@ -107,7 +107,7 @@ export default function HeroSection({
                 priority
                 onLoad={() => setImageStatus("loaded")}
                 onError={() => setImageStatus("error")}
-                className={`object-contain object-center mt-4 transition-opacity duration-500 ${
+                className={`object-contain object-center transition-opacity duration-500 ${
                   imageStatus === "loaded" ? "opacity-100" : "opacity-0"
                 }`}
               />

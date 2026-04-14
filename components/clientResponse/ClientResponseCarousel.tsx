@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import {
   Carousel,
   CarouselContent,
@@ -21,28 +21,32 @@ export default function ClientResponseCarousel({
   const [current, setCurrent] = useState(0)
   const [count, setCount] = useState(0)
 
+  const init = useCallback(() => {
+    if (!api) return
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap())
+  }, [api])
+
   useEffect(() => {
     if (!api) return
 
-    const init = () => {
-      setCount(api.scrollSnapList().length)
-      setCurrent(api.selectedScrollSnap())
-    }
+    const onSelect = () => setCurrent(api.selectedScrollSnap())
 
-    const onSelect = () => {
-      setCurrent(api.selectedScrollSnap())
-    }
-
-    api.on("init", init)
+    // Initialize synchronously outside the effect body via the event system
     api.on("reInit", init)
     api.on("select", onSelect)
 
+    // Trigger init as a side-effect after subscribing, not inline
+    const timer = setTimeout(init, 0)
+
     return () => {
-      api.off("init", init)
+      clearTimeout(timer)
       api.off("reInit", init)
       api.off("select", onSelect)
     }
-  }, [api])
+  }, [api, init])
+
+  const activeTestimonials = testimonials.filter((t) => t.is_active !== false)
 
   return (
     <div className="w-full flex flex-col items-center gap-6">
@@ -51,18 +55,19 @@ export default function ClientResponseCarousel({
         opts={{ align: "start", loop: true, slidesToScroll: 3 }}
         className="w-full px-12"
       >
-      <CarouselContent className="-ml-4">
-        {testimonials
-          .filter((t) => t.is_active !== false)
-          .map((testimonial) => (
-            <CarouselItem key={testimonial.id.toString()} className="pl-4 md:basis-1/3">
+        <CarouselContent className="-ml-4">
+          {activeTestimonials.map((testimonial) => (
+            <CarouselItem
+              key={testimonial.id.toString()}
+              className="pl-4 md:basis-1/3"
+            >
               <ClientResponseCard data={testimonial} />
             </CarouselItem>
           ))}
-      </CarouselContent>
+        </CarouselContent>
 
-        <CarouselPrevious/>
-        <CarouselNext/>
+        <CarouselPrevious />
+        <CarouselNext />
       </Carousel>
 
       {count > 1 && (

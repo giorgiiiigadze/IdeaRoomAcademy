@@ -18,15 +18,6 @@ type ServiceLink = {
   icon?: string
 }
 
-const worksLinks = [
-  { label: "NovaBank Platform", href: "/project/nova-bank", description: "A modern fintech platform built for seamless digital banking.", icon: "/header-icons/header-icon-test.svg" },
-  { label: "FitTrack App", href: "/project/fittrack", description: "A fitness tracking app focused on user engagement and simplicity.", icon: "/header-icons/header-icon-test.svg" },
-  { label: "Lume Cosmetics Branding", href: "/project/lume-cosmetics", description: "Complete brand identity for a fast-growing beauty company.", icon: "/header-icons/header-icon-test.svg" },
-  { label: "SocialBoost Campaign", href: "/project/socialboost", description: "High-performing social media campaign for audience growth.", icon: "/header-icons/header-icon-test.svg" },
-  { label: "VisionX Promo Video", href: "/project/visionx-video", description: "Cinematic promotional video designed for product launch.", icon: "/header-icons/header-icon-test.svg" },
-  { label: "MotionLab Explainer", href: "/project/motionlab", description: "Animated explainer video simplifying complex ideas.", icon: "/header-icons/header-icon-test.svg" },
-]
-
 function DropdownMenu({ label, links }: {
   label: string
   links: { label: string; href: string; description?: string; icon?: string }[]
@@ -51,32 +42,38 @@ function DropdownMenu({ label, links }: {
       </button>
 
       <div
-        className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[800px] bg-[#1A1A1A] rounded-2xl p-4 shadow-2xl transition-all duration-200 z-50
-          ${open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}`}
+        className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[800px] bg-[#1A1A1A] rounded-2xl p-4 shadow-2xl transition-opacity duration-200 z-50
+          ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       >
         <ul className="grid grid-cols-2 gap-x-6 gap-y-1">
-          {links.map((l) => (
-            <li key={l.label}>
-              <Link
-                href={l.href}
-                className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5 transition-colors duration-150 group"
-              >
-                <div className="flex-shrink-0 w-9 h-9 flex items-center justify-center">
-                  <Image src={l.icon!} width={36} height={36} alt={l.label} />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-white font-semibold text-sm leading-tight group-hover:text-brand-orange-5 transition-colors">
-                    {l.label}
-                  </span>
-                  {l.description && (
-                    <span className="text-gray-400 text-xs mt-0.5 leading-snug line-clamp-1">
-                      {l.description}
-                    </span>
-                  )}
-                </div>
-              </Link>
+          {links.length === 0 ? (
+            <li className="col-span-2 py-6 text-center text-gray-400 text-sm">
+              No items yet.
             </li>
-          ))}
+          ) : (
+            links.map((l) => (
+              <li key={l.label}>
+                <Link
+                  href={l.href}
+                  className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5 transition-colors duration-150 group"
+                >
+                  <div className="flex-shrink-0 w-9 h-9 flex items-center justify-center">
+                    <Image src={l.icon!} width={36} height={36} alt={l.label} />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-white font-semibold text-sm leading-tight group-hover:text-brand-orange-5 transition-colors">
+                      {l.label}
+                    </span>
+                    {l.description && (
+                      <span className="text-gray-400 text-xs mt-0.5 leading-snug line-clamp-1">
+                        {l.description}
+                      </span>
+                    )}
+                  </div>
+                </Link>
+              </li>
+            ))
+          )}
         </ul>
       </div>
     </div>
@@ -114,10 +111,12 @@ export default function Header() {
   const t = useTranslations("nav")
 
   const [servicesLinks, setServicesLinks] = useState<ServiceLink[]>([])
+  const [worksLinks, setWorksLinks] = useState<ServiceLink[]>([])
 
   useEffect(() => {
+    const supabase = createClient()
+
     async function fetchServices() {
-      const supabase = createClient()
       const { data } = await supabase.from("services").select("*").eq("is_active", true)
       if (data) {
         setServicesLinks(
@@ -130,9 +129,25 @@ export default function Header() {
         )
       }
     }
+
+    async function fetchWorks() {
+      const { data } = await supabase.from("works").select("*").eq("published", true)
+      if (data) {
+        setWorksLinks(
+          data.map((w) => ({
+            label: w.title,
+            href: `/works/${w.slug}`,
+            description: w.description,
+            icon: "/header-icons/header-icon-test.svg", // ← always use this icon
+          }))
+        )
+      }
+    }
+
     fetchServices()
+    fetchWorks()
   }, [])
-  
+
   return (
     <header className="w-full absolute top-0 left-0 right-0 z-50 px-4 lg:px-8">
       <div className="w-full max-w-[1389px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between mt-2 backdrop-blur-md rounded-2xl">
@@ -144,7 +159,7 @@ export default function Header() {
             height={54}
             priority
             style={{ width: "100px", height: "auto" }}
-          />        
+          />
         </Link>
 
         <div className="flex items-center gap-4">

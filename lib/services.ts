@@ -31,10 +31,15 @@ export async function getServiceBySlug(slug: string) {
 
 export async function getProjectBySlug(slug: string) {
   const supabase = await createClient()
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("projects")
-    .select("*")
+    .select(`
+      *,
+      videos(*)
+    `)
     .eq("slug", slug)
     .single()
+
+  console.log(error)
   return data ?? null
 }

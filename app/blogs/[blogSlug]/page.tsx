@@ -13,9 +13,9 @@ export default async function BlogSlugPage({ params }: { params: { blogSlug: str
   if (!blog) notFound()
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center font-sans bg-[#EFF2F5]">
-
-      <main className="w-full flex items-center justify-around flex-col gap-6">
+    <div className="flex flex-col flex-1 min-h-screen items-center justify-start font-sans bg-[#EFF2F5]">
+  
+      <main className="w-full flex items-center justify-around flex-col gap-6 mb-20">
 
         <HeroSection
           title={blog.title}
