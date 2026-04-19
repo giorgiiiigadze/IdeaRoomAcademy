@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server"
 import Image from "next/image"
+import Link from "next/link"
 
 export default async function CTASection() {
   const t = await getTranslations("cta")
@@ -17,12 +18,13 @@ export default async function CTASection() {
 
       <span className="text-[32px] text-brand-purple-4">{t("title")}</span>
 
-      <button
+      <Link
+        href={"/contact"}
         className="p-3.5 cursor-pointer px-6 rounded-3xl text-white font-bold"
         style={{ background: "linear-gradient(to right, #7B2FBE, #F5A623)" }}
       >
         {t("button")}
-      </button>
+      </Link>
     </section>
   )
 }

@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
 
 interface WorkCardProps {
   image: string
@@ -12,13 +13,13 @@ interface WorkCardProps {
 
 export default function WorkCard({ image, title, category, href = "#" }: WorkCardProps) {
   const router = useRouter()
+  const t = useTranslations("work")
 
   return (
     <div
       onClick={() => router.push(href)}
       className="relative w-full h-[280px] sm:h-[380px] rounded-2xl overflow-hidden cursor-pointer"
     >
-      
       <Image
         src={image}
         alt={title}
@@ -32,7 +33,7 @@ export default function WorkCard({ image, title, category, href = "#" }: WorkCar
         <h3 className="text-white text-2xl font-bold leading-tight">{title}</h3>
         <p className="text-white/70 text-sm mb-2">{category}</p>
         <button className="bg-[#FBA834] text-white cursor-pointer text-sm font-semibold px-5 py-3 rounded-lg">
-          View Project
+          {t("view_project")}
         </button>
       </div>
     </div>

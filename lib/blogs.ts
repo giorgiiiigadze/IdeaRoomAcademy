@@ -12,7 +12,7 @@ export type Blog = {
   created_at: string
 }
 
-export async function getBlogs(): Promise<Blog[]> {
+export async function getBlogs(locale: string = "en"): Promise<Blog[]> {
   const supabase = await createClient()
 
   const { data, error } = await supabase
@@ -28,5 +28,17 @@ export async function getBlogs(): Promise<Blog[]> {
 
   if (!Array.isArray(data)) return []
 
-  return data.filter(Boolean) as Blog[]
+  const isKa = locale === "ka"
+
+  return data.filter(Boolean).map((row) => ({
+    id: row.id,
+    title: (isKa && row.title_ka) ? row.title_ka : row.title,
+    content: (isKa && row.content_ka) ? row.content_ka : row.content,
+    slug: row.slug,
+    author: row.author,
+    cover_image_url: row.cover_image_url,
+    is_published: row.is_published,
+    published_at: row.published_at,
+    created_at: row.created_at,
+  })) as Blog[]
 }

@@ -1,27 +1,29 @@
 import { getBlogs } from "@/lib/api"
+import { getLocale } from "next-intl/server"
 import { notFound } from "next/navigation"
 
 import HeroSection from "@/components/projectLayout/Hero"
-import BlogCard from "@/components/blogDisplay/blogCard"
+import BlogDisplay from "@/components/blogDisplay/blogDisplay"
 
 export default async function BlogSlugPage({ params }: { params: { blogSlug: string } }) {
   const { blogSlug } = await params
+  const locale = await getLocale()
 
-  const blogs = await getBlogs()
+  const blogs = await getBlogs(locale)
   const blog = blogs.find((b: { slug: string }) => b.slug === blogSlug)
 
   if (!blog) notFound()
 
   return (
     <div className="flex flex-col flex-1 min-h-screen items-center justify-start font-sans bg-[#EFF2F5]">
-  
+
       <main className="w-full flex items-center justify-around flex-col gap-6 mb-20">
 
         <HeroSection
           title={blog.title}
           description={blog.content}
           image={blog.cover_image_url ?? undefined}
-          showReadFull 
+          showReadFull
         />
 
         <div className="w-full max-w-[1389px] px-4 py-10 flex flex-col gap-6" id="full-blog">
@@ -33,11 +35,10 @@ export default async function BlogSlugPage({ params }: { params: { blogSlug: str
           <div className="flex items-center gap-3 text-sm text-gray-400">
             <span>·</span>
             <span>
-              {new Date(blog.created_at).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              {new Date(blog.created_at).toLocaleDateString(
+                locale === "ka" ? "ka-GE" : "en-US",
+                { year: "numeric", month: "long", day: "numeric" }
+              )}
             </span>
             <span>·</span>
             <span>By {blog.author}</span>
@@ -73,16 +74,9 @@ export default async function BlogSlugPage({ params }: { params: { blogSlug: str
             </a>
           </div>
 
-          </div>
+        </div>
 
-          <div className="w-full max-w-[1389px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
-              {blogs.map((blog) => (
-                  <BlogCard
-                      key={blog.id}
-                      blog={blog}
-                  />
-              ))}
-          </div>
+        <BlogDisplay text={false} />
 
       </main>
 

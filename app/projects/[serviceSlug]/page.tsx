@@ -1,24 +1,30 @@
+import { notFound } from "next/navigation"
 import HeroSection from "@/components/projectLayout/Hero"
 import ProjectNavigation from "@/components/projectLayout/ServiceNavigation"
 import ProjectPageInformation from "@/components/projectLayout/ProjectPageInfo"
-import { getServiceBySlug, getServices } from "@/lib/services"
+import { getServices } from "@/lib/api"
+import { getLocale } from "next-intl/server"
+import { getServiceBySlug } from "@/lib/services"
 
 export default async function ProjectSlugPage({ params }: { params: Promise<{ serviceSlug: string }> }) {
   const { serviceSlug } = await params
+  const locale = await getLocale()
 
   const [service, services] = await Promise.all([
-    getServiceBySlug(serviceSlug),
-    getServices(),
+    getServiceBySlug(serviceSlug, locale),
+    getServices(locale),
   ])
 
-  const projects = service?.projects ?? []
+  if (!service) notFound()
+
+  const projects = service.projects ?? []
 
   return (
     <div className="flex flex-col items-center justify-start gap-8 bg-[#EFF2F5] min-h-screen">
       <HeroSection
-        title={service?.title}
-        description={service?.description}
-        image={service?.image}
+        title={service.title}
+        description={service.description}
+        image={service.image}
         buttonText="Read the Case Studio"
       />
 

@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { getTranslations } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 import FooterColumn from "./FooterColumn"
 import { FaFacebook, FaYoutube, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa"
 import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md"
@@ -17,9 +17,12 @@ const socialLinks = [
 ]
 
 export default async function Footer() {
-  const t = await getTranslations("footer")
-  const supabase = await createClient()
+  const [t, locale] = await Promise.all([
+    getTranslations("footer"),
+    getLocale(),
+  ])
 
+  const supabase = await createClient()
   
   const contactData = await getContactData()
   const contactInfo = contactData
@@ -35,7 +38,7 @@ export default async function Footer() {
     .select("*")
     .single()
     
-  const servicesData = await getServices()
+  const servicesData = await getServices(locale)
   const serviceLinks = servicesData?.map((s) => ({
     label: s.title,
     href: `/projects/${s.slug}`,

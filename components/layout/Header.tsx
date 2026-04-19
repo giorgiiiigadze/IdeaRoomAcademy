@@ -5,10 +5,9 @@ import Link from "next/link"
 import { useState, useRef, useEffect } from "react"
 import { ChevronDown } from "lucide-react"
 import gsap from "gsap"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 
 import LanguageToggle from "../LanguageToggle"
-
 import { createClient } from "@/lib/supabase/client"
 
 type ServiceLink = {
@@ -109,21 +108,23 @@ function AcademyButton({ label }: { label: string }) {
 
 export default function Header() {
   const t = useTranslations("nav")
+  const locale = useLocale()
 
   const [servicesLinks, setServicesLinks] = useState<ServiceLink[]>([])
   const [worksLinks, setWorksLinks] = useState<ServiceLink[]>([])
 
   useEffect(() => {
     const supabase = createClient()
+    const isKa = locale === "ka"
 
     async function fetchServices() {
       const { data } = await supabase.from("services").select("*").eq("is_active", true)
       if (data) {
         setServicesLinks(
           data.map((s) => ({
-            label: s.title,
+            label: isKa && s.title_ka ? s.title_ka : s.title,
             href: `/projects/${s.slug}`,
-            description: s.description,
+            description: isKa && s.description_ka ? s.description_ka : s.description,
             icon: s.icon ?? "/header-icons/header-icon-test.svg",
           }))
         )
@@ -135,10 +136,10 @@ export default function Header() {
       if (data) {
         setWorksLinks(
           data.map((w) => ({
-            label: w.title,
+            label: isKa && w.title_ka ? w.title_ka : w.title,
             href: `/works/${w.slug}`,
-            description: w.description,
-            icon: "/header-icons/header-icon-test.svg", // ← always use this icon
+            description: isKa && w.description_ka ? w.description_ka : w.description,
+            icon: "/header-icons/header-icon-test.svg",
           }))
         )
       }
@@ -146,7 +147,7 @@ export default function Header() {
 
     fetchServices()
     fetchWorks()
-  }, [])
+  }, [locale])
 
   return (
     <header className="w-full absolute top-0 left-0 right-0 z-50 px-4 lg:px-8">

@@ -1,10 +1,14 @@
+import { getLocale } from "next-intl/server"
 import HeroSection from "@/components/projectLayout/Hero"
 import AboutVideoDialog from "@/components/aboutSection/aboutVideoDialog"
-import TeamMember from "@/components/TeamMember"
+import TeamMember from "@/components/aboutSection/TeamMember"
 import { createClient } from "@/lib/supabase/server"
 
 export default async function AboutPage() {
-  const supabase = await createClient()
+  const [supabase, locale] = await Promise.all([
+    createClient(),
+    getLocale(),
+  ])
 
   const { data: aboutUs } = await supabase
     .from("about_us")
@@ -19,21 +23,29 @@ export default async function AboutPage() {
     ? supabase.storage.from("about-images").getPublicUrl(aboutUs.video_url).data.publicUrl
     : "/videos/test-video.mp4"
 
-  const membersWithPublicUrl = members?.map((member) => ({
+  const isKa = locale === "ka"
+
+  const description = (isKa && aboutUs?.description_ka)
+    ? aboutUs.description_ka
+    : aboutUs?.description
+
+  const membersWithPublicUrl = (members ?? []).map((member) => ({
     ...member,
+    name: (isKa && member.name_ka) ? member.name_ka : member.name,
+    role: (isKa && member.role_ka) ? member.role_ka : member.role,
     publicImageUrl: member.image_url
       ? supabase.storage.from("member-images").getPublicUrl(member.image_url).data.publicUrl
-      : "/about-images/about-test-pfp.png"
-  })) || []
+      : "/about-images/about-test-pfp.png",
+  }))
 
   return (
     <div className="flex flex-col items-center justify-center bg-[#EFF2F5]">
       <HeroSection />
 
       <main className="w-full max-w-[1389px] flex flex-col items-center justify-center py-10 gap-10">
-        {aboutUs?.description && (
+        {description && (
           <span className="w-[60%] text-center">
-            {aboutUs.description}
+            {description}
           </span>
         )}
 

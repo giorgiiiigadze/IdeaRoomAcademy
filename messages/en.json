@@ -43,12 +43,15 @@
   },
   "work": {
     "title": "See our work in action",
-    "empty": "No works found."
+    "empty": "No works found.",
+    "view_project": "View Project",
+    "view_all": "View All"
   },
   "blog": {
     "title": "Blog",
-    "subtitle": "Get Interesting stories about people, projects, and career opportunities directly to your mailbox",
-    "view_all": "View All"
+    "subtitle": "Get Interesting stories...",
+    "view_all": "View All",
+    "read_more": "Read More"
   },
   "cta": {
     "title": "Start Growing Your Business Today",

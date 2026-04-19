@@ -3,6 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
 
 interface Blog {
   id: string
@@ -14,6 +15,7 @@ interface Blog {
 
 export default function BlogCard({ blog }: { blog?: Blog }) {
   const router = useRouter()
+  const t = useTranslations("blog")
 
   if (!blog) return null
 
@@ -53,7 +55,7 @@ export default function BlogCard({ blog }: { blog?: Blog }) {
           onClick={(e) => e.stopPropagation()}
           className="inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-2.5 ml-auto rounded-lg bg-[#FBA834] hover:opacity-90"
         >
-          Read More
+          {t("read_more")}
         </Link>
       </div>
     </div>

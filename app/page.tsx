@@ -1,7 +1,3 @@
-import Link from "next/link";
-
-import SeeAll from "@/components/ui/seeAll";
-
 import LandingPageHero from "@/components/landingPageHero/landingPageHero";
 import BrandsGrid from "@/components/brandsGrid/brandsGrid";
 import ServicesDisplay from "@/components/servicesDisplay/servicesDisplay";
@@ -34,13 +30,11 @@ export default async function Home() {
         <MapDisplay />
 
         <div className="w-full max-w-[1389px] flex flex-col items-center gap-8 px-4">
-          <WorkInAction count={4} />
-          <SeeAll href="/works" label="View Collections" hint="Find inspiration for your projects" />
+          <WorkInAction count={4} viewAllLink/>
         </div>
         
         <div className="flex flex-col items-center bg-[#EFF2F5] w-full py-10">
-          <BlogDisplay count={3} />
-          <Link href={"/blogs"} className="px-5 py-2.5 text-medium rounded-xl bg-[#FBA834] hover:opacity-90 text-white">View All</Link>
+          <BlogDisplay count={3} viewAllLink/>
         </div>
 
         <CTASection />

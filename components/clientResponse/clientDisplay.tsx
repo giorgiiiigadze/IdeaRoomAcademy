@@ -1,10 +1,14 @@
 import { getTranslations } from "next-intl/server"
+import { getLocale } from "next-intl/server"
 import { getClientResponses } from "@/lib/api"
 import ClientResponseCarousel from "./ClientResponseCarousel"
 
 export default async function ClientResponse() {
-  const t = await getTranslations("testimonials")
-  const clientResponses = await getClientResponses()
+  const [t, locale] = await Promise.all([
+    getTranslations("testimonials"),
+    getLocale(),
+  ])
+  const clientResponses = await getClientResponses(locale)
 
   return (
     <div className="w-full max-w-[1389px] flex flex-col items-center gap-4 mt-8">

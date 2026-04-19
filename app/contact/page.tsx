@@ -11,7 +11,7 @@ export default async function ContactsPage() {
   const contactData = await getContactData()
 
   return (
-    <div className="flex flex-col items-center gap-6 mb-6">
+    <div className="flex flex-col items-center gap-20 mb-20">
 
       <HeroSection/>
 

@@ -4,7 +4,7 @@ import { Play } from "lucide-react"
 import { useRef, useState } from "react"
 
 interface VideoDialogProps {
-  videoUrl: string
+  videoUrl?: string
 }
 
 export default function AboutVideoDialog({ videoUrl }: VideoDialogProps) {

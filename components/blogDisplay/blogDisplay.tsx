@@ -1,27 +1,21 @@
 import { getTranslations } from "next-intl/server"
+import { getLocale } from "next-intl/server"
 import BlogCard from "./blogCard"
 import { getBlogs } from "@/lib/api"
-
-export type Blog = {
-  id: string
-  title: string
-  slug: string
-  author: string
-  cover_image_url: string | null
-  content: string
-  is_published: boolean
-  published_at: string
-  created_at: string
-}
+import Link from "next/link"
 
 interface BlogDisplayProps {
   count?: number
   text?: boolean
+  viewAllLink?: boolean
 }
 
-export default async function BlogDisplay({ count, text = true }: BlogDisplayProps) {
-  const t = await getTranslations("blog")
-  const blogs: Blog[] = await getBlogs()
+export default async function BlogDisplay({ count, text = true, viewAllLink = false }: BlogDisplayProps) {
+  const [t, locale] = await Promise.all([
+    getTranslations("blog"),
+    getLocale(),
+  ])
+  const blogs = await getBlogs(locale)
 
   const featuredBlogs = count ? blogs.slice(0, count) : blogs
 
@@ -45,13 +39,14 @@ export default async function BlogDisplay({ count, text = true }: BlogDisplayPro
           </p>
         ) : (
           featuredBlogs.map((blog) => (
-            <BlogCard
-              key={blog.id}
-              blog={blog}
-            />
+            <BlogCard key={blog.id} blog={blog} />
           ))
         )}
       </div>
+      
+      {viewAllLink && (
+        <Link href={"/blogs"} className="px-5 py-2.5 text-medium rounded-xl bg-[#FBA834] hover:opacity-90 text-white">{t("view_all")}</Link>
+      )}
     </div>
   )
 }

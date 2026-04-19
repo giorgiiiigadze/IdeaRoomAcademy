@@ -32,11 +32,9 @@ export default function ClientResponseCarousel({
 
     const onSelect = () => setCurrent(api.selectedScrollSnap())
 
-    // Initialize synchronously outside the effect body via the event system
     api.on("reInit", init)
     api.on("select", onSelect)
 
-    // Trigger init as a side-effect after subscribing, not inline
     const timer = setTimeout(init, 0)
 
     return () => {

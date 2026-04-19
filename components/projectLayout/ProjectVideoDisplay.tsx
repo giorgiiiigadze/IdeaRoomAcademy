@@ -15,7 +15,7 @@ interface InnerProjectVideosDisplayProps {
   videos?: VideoItem[]
 }
 
-function VideoCard({ video, onClick }: { video: VideoItem; onClick: () => void }) {
+export function VideoCard({ video, onClick }: { video: VideoItem; onClick: () => void }) {
   const isPortrait = video.type === "portrait"
 
   return (

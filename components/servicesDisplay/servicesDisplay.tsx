@@ -1,30 +1,15 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations, getLocale } from "next-intl/server"
 import ServiceCard from "./serviceCard"
-import { createClient } from "@/lib/supabase/server"
-
-type Service = {
-  id: string
-  title: string
-  slug: string
-  description: string
-  icon: string | null
-  is_active: boolean
-}
+import { getServices } from "@/lib/api"
+import type { Service } from "@/lib/api"
 
 export default async function ServicesDisplay() {
-  const t = await getTranslations("services")
-  const supabase = await createClient()
+  const [t, locale] = await Promise.all([
+    getTranslations("services"),
+    getLocale(),
+  ])
 
-  const { data, error } = await supabase
-    .from("services")
-    .select("*")
-    .eq("is_active", true)
-
-  if (error) {
-    console.error("Supabase error:", error.message)
-  }
-
-  const services: Service[] = (data ?? []).filter(Boolean)
+  const services: Service[] = await getServices(locale)
 
   return (
     <section className="w-full bg-[#EFF2F5] flex items-center justify-center px-4 sm:px-6 lg:px-8">

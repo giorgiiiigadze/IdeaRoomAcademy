@@ -4,16 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
-
-export type Service = {
-  title: string
-  description: string
-  icon: string
-  slug: string
-  image: string
-  status: string
-  is_active: boolean
-}
+import { type Service } from "@/lib/services"
 
 type Props = {
   services: Service[]

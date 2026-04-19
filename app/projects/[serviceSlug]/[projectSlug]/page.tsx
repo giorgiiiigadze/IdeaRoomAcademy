@@ -1,8 +1,11 @@
+import { notFound } from "next/navigation"
 import HeroSection from "@/components/projectLayout/Hero"
 import ProjectNavigation from "@/components/projectLayout/ServiceNavigation"
 import ProjectVideosDisplay from "@/components/projectLayout/ProjectVideoDisplay"
-import { getProjectBySlug, getServices } from "@/lib/services"
+import { getServices } from "@/lib/api"
 import { createClient } from "@/lib/supabase/server"
+import { getLocale } from "next-intl/server"
+import { getProjectBySlug } from "@/lib/services"
 
 export default async function ProjectSlugPage({
   params,
@@ -10,16 +13,19 @@ export default async function ProjectSlugPage({
   params: Promise<{ projectSlug: string }>
 }) {
   const { projectSlug } = await params
+  const locale = await getLocale()
 
   const [services, innerProjectData] = await Promise.all([
-    getServices(),
-    getProjectBySlug(projectSlug),
+    getServices(locale),
+    getProjectBySlug(projectSlug, locale),
   ])
+
+  if (!innerProjectData) notFound()
 
   const supabase = await createClient()
 
-    const videos = (innerProjectData?.videos ?? []).map((v: { id: string; file_path: string; title: string }) => {
-      const { data } = supabase.storage
+  const videos = (innerProjectData?.videos ?? []).map((v: { id: string; file_path: string; title: string }) => {
+    const { data } = supabase.storage
       .from("projects-videos")
       .getPublicUrl(v.file_path)
 
