@@ -1,3 +1,5 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
@@ -63,6 +65,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           </NextIntlClientProvider>
         </div>
       </body>
+      <GoogleAnalytics gaId="G-5EMWCPM57Z" />
     </html>
   )
 }
