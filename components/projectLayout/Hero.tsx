@@ -12,7 +12,6 @@ interface HeroSectionProps {
   buttonText?: string
   buttonUrl?: string
   image?: string
-  showReadFull?: boolean
 }
 
 function Spinner() {
@@ -33,13 +32,8 @@ export default function HeroSection({
   buttonText,
   buttonUrl,
   image,
-  showReadFull,
 }: HeroSectionProps) {
   const [imageStatus, setImageStatus] = useState<"loading" | "loaded" | "error">("loading")
-
-  const scrollToFullBlog = () => {
-    document.getElementById("full-blog")?.scrollIntoView({ behavior: "smooth" })
-  }
 
   const hasContent = title || description || (buttonText && buttonUrl)
 
@@ -61,19 +55,9 @@ export default function HeroSection({
 
             {description && (
               <div className="flex flex-col items-start gap-3">
-                <p className={`text-white/80 text-sm leading-7 text-center lg:text-left ${showReadFull ? "line-clamp-3" : ""}`}>
+                <p className={`text-white/80 text-sm leading-7 text-center lg:text-left`}>
                   {description}
                 </p>
-                {showReadFull && (
-                  <button
-                    onClick={scrollToFullBlog}
-                    aria-label="Scroll to full blog post"
-                    className="flex items-center gap-1 text-brand-orange-5 text-sm font-bold hover:gap-2 transition-all duration-200 cursor-pointer"
-                  >
-                    Read Full
-                    <ArrowBigRight className="w-4 h-4" />
-                  </button>
-                )}
               </div>
             )}
 

@@ -32,9 +32,9 @@ export default async function BlogDisplay({ count, text = true, viewAllLink = fa
         </div>
       )}
 
-      <div className="flex items-start gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-[1389px] px-4">
         {featuredBlogs.length === 0 ? (
-          <p className="text-center text-gray-400 text-sm py-10 w-full">
+          <p className="text-center text-gray-400 text-sm py-10 col-span-3">
             No blogs yet.
           </p>
         ) : (
@@ -43,9 +43,11 @@ export default async function BlogDisplay({ count, text = true, viewAllLink = fa
           ))
         )}
       </div>
-      
+
       {viewAllLink && (
-        <Link href={"/blogs"} className="px-5 py-2.5 text-medium rounded-xl bg-[#FBA834] hover:opacity-90 text-white">{t("view_all")}</Link>
+        <Link href={"/blogs"} className="px-5 py-2.5 text-medium rounded-xl bg-[#FBA834] hover:opacity-90 text-white">
+          {t("view_all")}
+        </Link>
       )}
     </div>
   )

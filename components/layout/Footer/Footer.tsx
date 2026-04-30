@@ -37,6 +37,9 @@ export default async function Footer() {
     .from("about_us")
     .select("*")
     .single()
+
+  const aboutDescription =
+    locale === "ka" ? aboutUsData?.description_ka : aboutUsData?.description
     
   const servicesData = await getServices(locale)
   const serviceLinks = servicesData?.map((s) => ({
@@ -58,7 +61,7 @@ export default async function Footer() {
             priority
             style={{ width: "100px", height: "auto" }}
           />
-          <p className="text-[#CACACA] text-sm leading-relaxed">{aboutUsData.description}</p>
+          <p className="text-[#CACACA] text-sm leading-relaxed">{aboutDescription}</p>
 
           <div className="flex gap-2 mt-2">
             {socialLinks.map(({ icon: Icon, href, label }) => (

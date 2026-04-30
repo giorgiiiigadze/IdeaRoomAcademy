@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import {
   Carousel,
   CarouselContent,
@@ -12,6 +12,8 @@ import {
 import ClientResponseCard from "./clientCard"
 import type { Testimonial } from "@/lib/api"
 
+const SLIDES_PER_PAGE = 3
+
 export default function ClientResponseCarousel({
   testimonials,
 }: {
@@ -19,38 +21,30 @@ export default function ClientResponseCarousel({
 }) {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
-  const [count, setCount] = useState(0)
-
-  const init = useCallback(() => {
-    if (!api) return
-    setCount(api.scrollSnapList().length)
-    setCurrent(api.selectedScrollSnap())
-  }, [api])
 
   useEffect(() => {
     if (!api) return
 
     const onSelect = () => setCurrent(api.selectedScrollSnap())
+    const onReInit = () => setCurrent(api.selectedScrollSnap())
 
-    api.on("reInit", init)
     api.on("select", onSelect)
-
-    const timer = setTimeout(init, 0)
+    api.on("reInit", onReInit)
 
     return () => {
-      clearTimeout(timer)
-      api.off("reInit", init)
       api.off("select", onSelect)
+      api.off("reInit", onReInit)
     }
-  }, [api, init])
+  }, [api])
 
   const activeTestimonials = testimonials.filter((t) => t.is_active !== false)
+  const count = Math.ceil(activeTestimonials.length / SLIDES_PER_PAGE)
 
   return (
     <div className="w-full flex flex-col items-center gap-6">
       <Carousel
         setApi={setApi}
-        opts={{ align: "start", loop: true, slidesToScroll: 3 }}
+        opts={{ align: "start", loop: true, slidesToScroll: SLIDES_PER_PAGE }}
         className="w-full px-12"
       >
         <CarouselContent className="-ml-4">
@@ -73,7 +67,7 @@ export default function ClientResponseCarousel({
           {Array.from({ length: count }).map((_, index) => (
             <button
               key={index}
-              onClick={() => api?.scrollTo(index)}
+              onClick={() => api?.scrollTo(index * SLIDES_PER_PAGE)}
               className={`w-2.5 h-2.5 rounded-full transition-colors ${
                 index === current
                   ? "bg-brand-purple-6"

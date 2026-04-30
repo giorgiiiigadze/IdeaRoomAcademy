@@ -1,7 +1,7 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 import Header from "@/components/layout/Header";
@@ -13,17 +13,7 @@ import { NextIntlClientProvider } from "next-intl"
 import { getLocale, getMessages } from "next-intl/server"
 import { Toaster } from "sonner";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: "IdeaRoom Academy",
@@ -51,7 +41,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <html
       lang={locale}
       suppressHydrationWarning
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
+      className={cn("h-full", "antialiased", inter.variable, "font-sans")}
     >
       <body className="min-h-full flex flex-col">
         <div className="w-full flex flex-col items-center min-h-screen bg-background">
